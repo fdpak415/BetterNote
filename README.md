@@ -1,5 +1,26 @@
 # README
 
+-Heroku Link - Link to live version
+
+-Minimum Viable Product:
+  A fresh note taking app inspired by Evernote.
+  List of features:
+    -User Sign Up & Authentication
+    -Notes
+    -Notebooks
+    -Tags
+    -Search
+    -Rich-text-editing
+
+
+
+-Wireframes
+
+-React Components
+
+  -
+
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
