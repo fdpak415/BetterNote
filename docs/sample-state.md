@@ -1,7 +1,10 @@
 {
-  current_user: {
-    id: 1,
-    email: "john@google.com"
+  session: {
+    current_user: {
+      id: 1,
+      email: "john@google.com"
+    },
+    errors: []
   },
   forms: {
     signUp: {errors: []},
