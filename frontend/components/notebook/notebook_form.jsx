@@ -1,15 +1,13 @@
 import React from 'react';
 import {withRouter} from 'react-router';
-import NotesHeader from './notes_header';
 
-class NoteForm extends React.Component {
+
+class NotebookForm extends React.Component {
   constructor(props){
     super(props);
 
     this.state = {
       title: '',
-      body: '',
-      notebook_id: 1,
       author_id: this.props.userId
     }
 
@@ -17,14 +15,10 @@ class NoteForm extends React.Component {
     this.cancelButton = this.cancelButton.bind(this);
   }
 
-  componentWillMount() {
-    this.props.fetchNotebooks();
-  }
-
   handleSubmit(e) {
     e.preventDefault();
-    const note = this.state
-    this.props.createNote({note})
+    const notebook = this.state
+    this.props.createNotebook({notebook})
     this.props.router.push("/")
   }
 
@@ -39,34 +33,21 @@ class NoteForm extends React.Component {
     this.props.router.push('/');
   }
 
-
   render() {
-    const notebooks = this.props.notebooks
     return(
       <div>
-
         <form onSubmit={this.handleSubmit}>
-          <ul>
-            {notebooks.map((book, i) => (
-              <li>{book}</li>
-            ))}
-          </ul>
           <input
             type="text"
-            placeholder="New Note..."
+            placeholder="New Notebook..."
             value={this.state.title}
             onChange={this.update('title')}></input>
 
           <br></br>
 
-          <textarea
-            placeholder="Type Here..."
-            value={this.state.body}
-            onChange={this.update('body')}></textarea>
-
           <input
             type="submit"
-            value="Create Note"></input>
+            value="Create Notebook"></input>
 
           <input
             type="button"
@@ -79,4 +60,4 @@ class NoteForm extends React.Component {
   }
 }
 
-export default withRouter(NoteForm);
+export default withRouter(NotebookForm);

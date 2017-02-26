@@ -6,7 +6,7 @@ class Api::NotebooksController < ApplicationController
   end
 
   def show
-    @notebook = Notebook.find_by(id: notebook_params[:id])
+    @notebook = Notebook.find(notebook_params[:id])
   end
 
   def create
@@ -19,16 +19,24 @@ class Api::NotebooksController < ApplicationController
   end
 
   def update
-
+    
+    @notebook = Notebook.find(notebook_params[:id])
+      if @notebook.update!(notebook_params)
+        render :show
+      else
+        render @notebook.errors.full_messages, status: 422
+      end
   end
 
   def destroy
-
+    @notebook = Notebook.find(notebook_params[:id])
+    @notebook.destroy!
+      render :show
   end
 
   private
     def notebook_params
-      params.require(:notebook).permit(:id, :title, :description, :author_id)
+      params.require(:notebook).permit(:id, :title, :author_id)
     end
 
 end

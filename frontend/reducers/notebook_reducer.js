@@ -7,12 +7,15 @@ const NotebookReducer = (state = {}, action) => {
   let newState = merge({}, state)
   switch (action.type) {
     case RECEIVE_NOTEBOOK:
-      return merge(newState, {notebook});
+      const newNotebook = {[action.notebook.id]: action.notebook};
+      return merge({}, state, newNotebook);
     case RECEIVE_NOTEBOOKS:
-      return merge(newState, {notebooks});
+      const notebooks = action.notebooks
+      return merge(newState, notebooks);
     case DELETE_NOTEBOOK:
       const bookId = action.notebook.id;
-      return newState.filter(notebookId => notebookId !== bookId);
+      delete newState[bookId];
+      return newState;
     default:
     return state;
   }
