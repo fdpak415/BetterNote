@@ -40,17 +40,19 @@ class NoteForm extends React.Component {
   }
 
 
+
   render() {
-    const notebooks = this.props.notebooks
+    const notebooks = Object.values(this.props.notebooks)
     return(
       <div>
 
         <form onSubmit={this.handleSubmit}>
-          <ul>
-            {notebooks.map((book, i) => (
-              <li>{book}</li>
-            ))}
-          </ul>
+          <select onChange={this.update('notebook_id')}>
+            { notebooks.map((book, i) => <option value={book.id}>{book.title}</option>)}
+          </select>
+
+          <br></br>
+
           <input
             type="text"
             placeholder="New Note..."
