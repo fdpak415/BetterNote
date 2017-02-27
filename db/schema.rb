@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170225052729) do
+ActiveRecord::Schema.define(version: 20170227055906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 20170225052729) do
   end
 
   create_table "taggings", force: :cascade do |t|
-    t.integer  "note_id",    null: false
-    t.integer  "tag_id",     null: false
+    t.integer  "tag_id"
+    t.integer  "note_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["note_id"], name: "index_taggings_on_note_id", using: :btree
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20170225052729) do
   end
 
   create_table "tags", force: :cascade do |t|
-    t.string   "name",       null: false
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -58,4 +58,6 @@ ActiveRecord::Schema.define(version: 20170225052729) do
     t.index ["email"], name: "index_users_on_email", using: :btree
   end
 
+  add_foreign_key "taggings", "notes"
+  add_foreign_key "taggings", "tags"
 end

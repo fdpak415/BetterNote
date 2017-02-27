@@ -4,7 +4,9 @@ Rails.application.routes.draw do
     resource :user, only: [:create]
     resource :session, only: [:create, :destroy]
     resources :notebooks, only: [:index, :create, :edit, :show, :update, :destroy]
+    get 'tags/:tag', to: 'notes#index', as: :tag
     resources :notes, only: [:index, :create, :edit, :show, :update, :destroy]
+    resources :tags, only: [:index, :create, :show, :update, :destroy]
   end
 
   root "static_pages#root"

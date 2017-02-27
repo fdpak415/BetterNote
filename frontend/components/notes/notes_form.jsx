@@ -1,6 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router';
 import NotesHeader from './notes_header';
+import TagForm from '../tags/tag_form';
 
 class NoteForm extends React.Component {
   constructor(props){
@@ -9,21 +10,38 @@ class NoteForm extends React.Component {
     this.state = {
       title: '',
       body: '',
-      notebook_id: 1,
-      author_id: this.props.userId
+      notebook_id: '',
+      author_id: this.props.userId,
+      tags: []
     }
-
+    this.addTag = this.addTag.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.cancelButton = this.cancelButton.bind(this);
   }
+
+
 
   componentWillMount() {
     this.props.fetchNotebooks();
   }
 
+  defaultNotebookId() {
+    debugger;
+    const notebookss = Object.values(this.props.notebooks)[0].id
+    this.setState({['notebook_id']: notebookss})
+  }
+
+
+  addTag(tag) {
+    const tags = this.state.tags
+    tags.push(tag.name)
+    this.forceUpdate();
+  }
+
   handleSubmit(e) {
     e.preventDefault();
-    const note = this.state
+    this.defaultNotebookId();
+    const note = this.state;
     this.props.createNote({note})
     this.props.router.push("/")
   }
@@ -39,17 +57,20 @@ class NoteForm extends React.Component {
     this.props.router.push('/');
   }
 
-
-
   render() {
     const notebooks = Object.values(this.props.notebooks)
     return(
       <div>
 
-        <form onSubmit={this.handleSubmit}>
-          <select onChange={this.update('notebook_id')}>
-            { notebooks.map((book, i) => <option value={book.id}>{book.title}</option>)}
+        <form onSubmit={(e) => this.handleSubmit(e)}>
+          <select onChange={this.update('notebook_id')} value={this.state.notebook_id}>
+            { notebooks.map((book, i) => <option key={i} value={book.id}>{book.title}</option>)}
           </select>
+
+
+          <br></br>
+
+          Tags: <TagForm addTag={this.addTag} createTag={this.props.createTag} />
 
           <br></br>
 
