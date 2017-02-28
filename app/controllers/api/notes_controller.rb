@@ -12,8 +12,7 @@ class Api::NotesController < ApplicationController
   def create
     new_params = note_params.reject {|h| h["tags"]}
     @note = Note.new(new_params)
-
-    if note_params[:tags] != []
+    if note_params[:tags]
       @tags = []
       note_params[:tags].each do |tag|
         @tags << Tag.create({"name" => tag})
