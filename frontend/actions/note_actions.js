@@ -46,3 +46,8 @@ export const destroyNote = (id) => dispatch => (
   APIUtil.deleteNote(id)
   .then((note) => (dispatch(deleteNote(note))))
 );
+
+export const searchNotes = (query) => dispatch => (
+  APIUtil.searchNotes(query)
+  .then(notes => (dispatch(receive(notes))))
+);

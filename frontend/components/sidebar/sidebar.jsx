@@ -27,6 +27,10 @@ class Sidebar extends React.Component {
           </li>
 
           <li>
+            <button onClick={e => this.handleClick(e, '/search/notes')}>Search Notes</button>
+          </li>
+
+          <li>
             <button onClick={e => this.handleClick(e, '/search/tags')}>Search Tags</button>
           </li>
         </ul>

@@ -14,9 +14,11 @@ export const fetchNotes = () => {
 }
 
 export const fetchNote = (id) => {
+
   return $.ajax({
     url: `/api/notes/${id}`,
-    method: 'GET'
+    method: 'GET',
+    data: {"note": {id: id}}
   })
 }
 
@@ -35,4 +37,12 @@ export const deleteNote = (id) => {
     method: 'DELETE',
     data: {"notes": {id: id}}
   })
+}
+
+export const noteSearch = query => {
+  return $.ajax({
+       url: "api/notes/search",
+       method: "GET",
+       data: query
+     });
 }

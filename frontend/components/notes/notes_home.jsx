@@ -1,6 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router';
 import NotesIndex from './notes_index';
+import SearchForm from '../search/search_form';
 
 class NotesHome extends React.Component {
   constructor(props){

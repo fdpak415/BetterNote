@@ -2,38 +2,40 @@ import React from 'react';
 import {withRouter} from 'react-router';
 import TagForm from '../tags/tag_form';
 import NotebookSelector from './notebook_selector';
+import TagDetail from '../tags/tag_detail';
 
-class NoteForm extends React.Component {
+class NoteDetail extends React.Component {
   constructor(props){
     super(props);
 
     this.state = {
-      title: '',
-      body: '',
-      notebook_id: 1,
+      title: this.props.noteDetail.title,
+      body: this.props.noteDetail.body,
+      notebook_id: this.props.noteDetail.notebook_id,
       author_id: this.props.userId,
       tags: []
     }
 
-    this.addTag = this.addTag.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.cancelButton = this.cancelButton.bind(this);
-    this.addNotebook = this.addNotebook.bind(this);
   }
 
   componentWillMount() {
+    this.props.fetchNote(parseInt(this.props.params.noteId));
     this.props.fetchNotebooks();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.params.noteId !== nextProps.params.noteId) {
+      this.props.fetchNote(nextProps.params.noteId);
+    }
+  }
+
+  routeIsCorrect() {
+    return parseInt(this.props.params.noteId) === this.props.noteDetail.id;
   }
 
   addTag(tag) {
     const tags = this.state.tags
     tags.push(tag.name)
-    this.forceUpdate();
-  }
-
-  addNotebook(bookId) {
-    const notebookId = this.state.notebook_id
-    this.setState({notebook_id: bookId});
     this.forceUpdate();
   }
 
@@ -50,45 +52,38 @@ class NoteForm extends React.Component {
     }
   }
 
-  cancelButton(e) {
-    e.preventDefault();
-    this.props.router.push('/');
-  }
-
   render() {
     const notebooks = Object.values(this.props.notebooks)
+    const noteDetail = this.props.noteDetail;
     return(
       <div>
         <form onSubmit={(e) => this.handleSubmit(e)}>
 
-          <NotebookSelector addNotebook={this.addNotebook} notebooks={notebooks} />
+          <NotebookSelector notebooks={notebooks} />
           <br></br>
 
-          Tags: <TagForm addTag={this.addTag} createTag={this.props.createTag} />
+          Tags:
+          <TagDetail note={noteDetail}/>
+          <TagForm addTag={this.addTag} />
 
           <br></br>
 
           <input
             type="text"
-            placeholder="New Note..."
+            placeholder={noteDetail.title}
             value={this.state.title}
             onChange={this.update('title')}></input>
 
           <br></br>
 
           <textarea
-            placeholder="Type Here..."
+            placeholder={noteDetail.body}
             value={this.state.body}
             onChange={this.update('body')}></textarea>
 
           <input
             type="submit"
-            value="Create Note"></input>
-
-          <input
-            type="button"
-            value="Cancel"
-            onClick={this.cancelButton}></input>
+            value="Update Note"></input>
 
         </form>
       </div>
@@ -96,4 +91,4 @@ class NoteForm extends React.Component {
   }
 }
 
-export default withRouter(NoteForm);
+export default withRouter(NoteDetail);

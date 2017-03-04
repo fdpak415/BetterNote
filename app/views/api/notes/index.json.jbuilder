@@ -1,5 +1,5 @@
 @notes.each do |note|
   json.set! note.id do
-    json.partial! 'api/notes/note', note: note
+    json.extract! note, :id, :title, :body, :notebook_id, :author_id
   end
 end

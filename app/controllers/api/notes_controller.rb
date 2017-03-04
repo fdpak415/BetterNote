@@ -1,12 +1,23 @@
 class Api::NotesController < ApplicationController
 
+  def search
+    if params[:query].present?
+      @notes = Note.where("title ~ ?", params[:query])
+                   .where("body ~ ?", params[:query])
+    else
+      @notes = Note.none
+    end
+  end
+
   def index
     @notes = Note.all
     render :index
   end
 
   def show
-    @note = note.find(note_params[:id])
+    @note = Note.find(note_params[:id])
+    @tags = @note.tags
+      render :show
   end
 
   def create
