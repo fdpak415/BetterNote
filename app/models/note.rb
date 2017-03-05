@@ -4,8 +4,8 @@ class Note < ApplicationRecord
 
   has_many :taggings
   has_many :tags, through: :taggings
-  belongs_to :user
-  
+  belongs_to :user, foreign_key: 'author_id'
+
 
   def self.tagged_with(name)
     Tag.find_by_name!(name).articles

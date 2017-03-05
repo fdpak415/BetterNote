@@ -5,6 +5,12 @@ class Api::TagsController < ApplicationController
     render :index
   end
 
+  def show
+    @tag = Tag.find(tag_params[:id])
+    @notes = @tag.notes
+      render :show
+  end
+
 
   def create
     @tag = Tag.new(tag_params)

@@ -24,10 +24,6 @@ class TagForm extends React.Component {
 
   }
 
-  tester() {
-    console.log("tested");
-  }
-
   saveTag(e) {
     const tag = {name: e.currentTarget.value}
     this.props.addTag(tag);

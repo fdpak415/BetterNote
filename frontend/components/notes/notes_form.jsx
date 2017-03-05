@@ -28,6 +28,7 @@ class NoteForm extends React.Component {
   addTag(tag) {
     const tags = this.state.tags
     tags.push(tag.name)
+    this.setState({tags: Array.from(new Set(tags))})
     this.forceUpdate();
   }
 

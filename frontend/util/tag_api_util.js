@@ -16,7 +16,8 @@ export const fetchTags = () => {
 export const fetchTag = (id) => {
   return $.ajax({
     url: `/api/tags/${id}`,
-    method: 'GET'
+    method: 'GET',
+    data: {"tag": {id: id}}
   })
 }
 

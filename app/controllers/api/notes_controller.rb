@@ -26,9 +26,16 @@ class Api::NotesController < ApplicationController
     if note_params[:tags]
       @tags = []
       note_params[:tags].each do |tag|
-        @tags << Tag.create({"name" => tag})
-        @note.tags << @tags
+        @tag = Tag.new({"name" => tag})
+          if @tag.save
+            @tags << @tag
+          else
+            @tag = Tag.find_by(name: tag)
+            @tags << @tag
+          end
       end
+        @note.tags << @tags.uniq
+
     end
       if @note.save
         render :show

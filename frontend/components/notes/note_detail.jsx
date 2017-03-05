@@ -16,11 +16,14 @@ class NoteDetail extends React.Component {
       tags: []
     }
 
+    this.addTag = this.addTag.bind(this);
+
   }
 
   componentWillMount() {
     this.props.fetchNote(parseInt(this.props.params.noteId));
     this.props.fetchNotebooks();
+
   }
 
   componentWillReceiveProps(nextProps) {
@@ -55,6 +58,7 @@ class NoteDetail extends React.Component {
   render() {
     const notebooks = Object.values(this.props.notebooks)
     const noteDetail = this.props.noteDetail;
+
     return(
       <div>
         <form onSubmit={(e) => this.handleSubmit(e)}>

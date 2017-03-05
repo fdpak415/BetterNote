@@ -30,7 +30,7 @@ class TagSearch extends React.Component {
     const inputLength = inputValue.length;
 
     return inputLength === 0 ? [] : tagList.filter(tag =>
-      tag.name.toLowerCase().slice(0, inputLength) === inputValue
+      tag.name.toLowerCase().includes(inputValue)
   )};
 
   // Autosuggest will call this function every time you need to update suggestions.
@@ -58,7 +58,7 @@ class TagSearch extends React.Component {
           <ul>
             {suggestions.map((suggestion, i) =>
             <li key={i}>
-              <Link to={`/notes/${suggestion.id}`}>
+              <Link to={`/searchtag/${suggestion.id}`}>
                 <span>{suggestion.name}</span>
               </Link>
             </li>)}
