@@ -23,7 +23,7 @@ export const fetchNote = (id) => {
 }
 
 export const updateNote = (id, data) => {
-  data["notes"]["id"] = id
+  data["note"]["id"] = id
   return $.ajax({
     url: `/api/notes/${id}`,
     method: 'PATCH',
@@ -35,7 +35,7 @@ export const deleteNote = (id) => {
   return $.ajax({
     url: `/api/notes/${id}`,
     method: 'DELETE',
-    data: {"notes": {id: id}}
+    data: {"note": {id: id}}
   })
 }
 

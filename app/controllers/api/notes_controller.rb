@@ -56,7 +56,11 @@ class Api::NotesController < ApplicationController
 
   def destroy
     @note = Note.find(note_params[:id])
-    @note.destroy!
+    @tags = @note.taggings
+    @tags.each do |tag|
+      tag.destroy
+    end
+    @note.destroy
       render :show
   end
 

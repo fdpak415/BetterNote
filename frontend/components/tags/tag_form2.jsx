@@ -1,27 +1,36 @@
 import React from 'react';
 
-class TagInput extends React.Component {
+class TagInput2 extends React.Component {
   render() {
     return <input
       type="text"
       placeholder="New Tag..."
-      onBlur={e => this.props.saveTag(e)}></input>
-
+      onBlur={e => this.props.createTag(this.props.tag)}
+      onChange={this.props.update('tag')}></input>
   }
 }
 
-
-class TagForm extends React.Component {
+class TagForm2 extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       canInput: false,
-      documents: []
+      documents: [],
+      tag: {name: ''}
+
     }
 
     this.add = this.add.bind(this);
     this.saveTag = this.saveTag.bind(this);
+    this.update = this.update.bind(this);
+  }
+
+  update(property) {
+
+    return e => {
+      this.setState({[property]: {name: e.currentTarget.value,
+                    note_id: parseInt(this.props.noteDetail.id)}})
+    }
   }
 
   saveTag(e) {
@@ -31,15 +40,14 @@ class TagForm extends React.Component {
   }
 
   add() {
-
-    const documents = this.state.documents.concat(TagInput);
+    const documents = this.state.documents.concat(TagInput2);
     this.setState({ documents });
   }
 
 
   render() {
     const documents = this.state.documents.map((Element, index) => {
-      return <Element key={ index } index={ index } saveTag={this.saveTag} />
+      return <Element key={ index } index={ index } createTag={this.props.createTag} update={this.update} tag={this.state.tag}/>
     });
 
     return(
@@ -51,4 +59,4 @@ class TagForm extends React.Component {
   }
 }
 
-export default TagForm;
+export default TagForm2;

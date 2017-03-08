@@ -2,7 +2,7 @@ export const createTag = tag => {
   return $.ajax({
     url: '/api/tags',
     method: 'POST',
-    data: tag
+    data: {tag: tag}
   })
 }
 

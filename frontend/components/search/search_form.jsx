@@ -1,6 +1,7 @@
 import React from 'react';
 import values from 'lodash/values';
 import {Link, withRouter} from 'react-router';
+import SearchFormList from './search_form_list';
 
 class SearchForm extends React.Component {
   constructor(props) {
@@ -9,13 +10,22 @@ class SearchForm extends React.Component {
       value: '',
       suggestions: Object.values(this.props.notes)
     }
-
+    this.handleClick = this.handleClick.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
   }
 
   componentWillMount() {
-    this.props.fetchNotes();
+    this.props.fetchNotes()
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.location.key !== this.props.location.key) {
+      this.props.fetchNotes();
+      this.forceUpdate();
+    }
+  }
+
 
   onChange(e) {
     this.setState({
@@ -24,8 +34,13 @@ class SearchForm extends React.Component {
     this.onSuggestionsFetchRequested(e.currentTarget.value);
   };
 
+  handleClick(e, suggestion) {
+    e.preventDefault();
+    this.props.destroyNote(suggestion.id);
+  }
+
   getSuggestions(value) {
-    const noteList = Object.values(this.props.notes) || [];
+    const noteList = Object.values(this.props.notes)
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
 
@@ -52,7 +67,9 @@ class SearchForm extends React.Component {
   renderSuggestions(suggestions) {
     if (this.state.value === '') {
       suggestions = Object.values(this.props.notes)
+      suggestions.splice(-1);
     }
+
     return (
           <ul>
             {suggestions.map((suggestion, i) =>
@@ -60,6 +77,8 @@ class SearchForm extends React.Component {
               <Link to={`/notes/${suggestion.id}`}>
                 <span>{suggestion.title}</span>
               </Link>
+              <button
+              onClick={e => this.handleClick(e, suggestion)}>Delete Note</button>
             </li>)}
           </ul>
     )
@@ -67,20 +86,18 @@ class SearchForm extends React.Component {
 
 
   render() {
-    const {value, suggestions } = this.state;
-
-    return (
+    const {isFetching} = this.props;
+    debugger;
+    return(
       <div>
-        <input
-          type="text"
-          placeholder="Search Notes..."
-          value={value}
-          onChange={this.onChange}></input>
-
-        {this.renderSuggestions(suggestions)}
-
+        {isFetching &&
+          <div>Loading...</div>
+        }
+        {!isFetching &&
+        <SearchFormList suggestions={this.state.suggestions} renderSuggestions={this.renderSuggestions}/>}
       </div>
-    );
+    )
+
   }
 }
 

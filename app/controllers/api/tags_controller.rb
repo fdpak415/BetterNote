@@ -13,7 +13,10 @@ class Api::TagsController < ApplicationController
 
 
   def create
-    @tag = Tag.new(tag_params)
+    new_params = tag_params.reject {|h| h["note_id"]}
+    @tag = Tag.new(new_params)
+      @note = Note.find_by_id(tag_params[:note_id])
+      @tag.notes << @note
       if @tag.save
         render :show
       else
@@ -39,7 +42,7 @@ class Api::TagsController < ApplicationController
 
   private
     def tag_params
-      params.require(:tag).permit(:id, :name)
+      params.require(:tag).permit(:id, :name, :note_id)
     end
 
 end

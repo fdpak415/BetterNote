@@ -43,6 +43,7 @@ class NoteForm extends React.Component {
     const note = this.state;
     this.props.createNote({note})
     this.props.router.push("/")
+
   }
 
   update(property) {
@@ -53,7 +54,10 @@ class NoteForm extends React.Component {
 
   cancelButton(e) {
     e.preventDefault();
-    this.props.router.push('/');
+    this.props.router.push({
+      pathname: '/',
+      query: 123});
+    debugger;
   }
 
   render() {
@@ -65,7 +69,7 @@ class NoteForm extends React.Component {
           <NotebookSelector addNotebook={this.addNotebook} notebooks={notebooks} />
           <br></br>
 
-          Tags: <TagForm addTag={this.addTag} createTag={this.props.createTag} />
+          Tags: <TagForm addTag={this.addTag} />
 
           <br></br>
 
