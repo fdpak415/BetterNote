@@ -4,6 +4,8 @@ export const RECEIVE_NOTE = 'RECEIVE_NOTE';
 
 export const RECEIVE_NOTES = 'RECEIVE_NOTES';
 
+export const REQUEST_NOTES = 'REQUEST_NOTES';
+
 export const DELETE_NOTE = 'DELETE_NOTE';
 
 
@@ -22,15 +24,20 @@ export const receiveNotes = notes => ({
   notes
 });
 
+export const requestNotes = () => ({
+  type: REQUEST_NOTES
+});
+
 export const createNote = note => dispatch => (
   APIUtil.createNote(note)
   .then(note => (dispatch(receiveNote(note))))
 );
 
-export const fetchNotes = () => dispatch => (
-  APIUtil.fetchNotes()
+export const fetchNotes = () => dispatch => {
+  dispatch(requestNotes())
+  return APIUtil.fetchNotes()
   .then(notes => (dispatch(receiveNotes(notes))))
-);
+};
 
 export const fetchNote = (id) => dispatch => (
   APIUtil.fetchNote(id)
@@ -45,4 +52,9 @@ export const updateNote = (id, data) => dispatch => (
 export const destroyNote = (id) => dispatch => (
   APIUtil.deleteNote(id)
   .then((note) => (dispatch(deleteNote(note))))
+);
+
+export const searchNotes = (query) => dispatch => (
+  APIUtil.searchNotes(query)
+  .then(notes => (dispatch(receive(notes))))
 );

@@ -1,12 +1,23 @@
 class Api::NotesController < ApplicationController
 
+  def search
+    if params[:query].present?
+      @notes = Note.where("title ~ ?", params[:query])
+                   .where("body ~ ?", params[:query])
+    else
+      @notes = Note.none
+    end
+  end
+
   def index
     @notes = Note.all
     render :index
   end
 
   def show
-    @note = note.find(note_params[:id])
+    @note = Note.find(note_params[:id])
+    @tags = @note.tags
+      render :show
   end
 
   def create
@@ -15,9 +26,16 @@ class Api::NotesController < ApplicationController
     if note_params[:tags]
       @tags = []
       note_params[:tags].each do |tag|
-        @tags << Tag.create({"name" => tag})
-        @note.tags << @tags
+        @tag = Tag.new({"name" => tag})
+          if @tag.save
+            @tags << @tag
+          else
+            @tag = Tag.find_by(name: tag)
+            @tags << @tag
+          end
       end
+        @note.tags << @tags.uniq
+
     end
       if @note.save
         render :show
@@ -38,7 +56,11 @@ class Api::NotesController < ApplicationController
 
   def destroy
     @note = Note.find(note_params[:id])
-    @note.destroy!
+    @tags = @note.taggings
+    @tags.each do |tag|
+      tag.destroy
+    end
+    @note.destroy
       render :show
   end
 

@@ -4,14 +4,14 @@ import AuthFormContainer from './authform/auth_form_container';
 import Sidebar from './sidebar/sidebar';
 import NotesContainer from './notes/notes_container'
 import SearchFormContainer from './search/search_form_container';
-const App = ({children}) => (
+const App2 = ({children}) => (
   <div>
     <h1>BetterNote</h1>
     <GreetingContainer />
     <Sidebar />
-    <SearchFormContainer />
+    <NotesContainer />
     {children}
   </div>
 );
 
-export default App;
+export default App2;
