@@ -4,13 +4,11 @@ import {fetchNotes, destroyNote} from '../../actions/note_actions';
 
 
 const mapStateToProps = (state) => {
-  const notes = state.notes || {}
-  const isFetching = state.notes.isFetching || {
-    isFetching: true
-  }
+  const isFetching = state.notes.isFetching || true
+
 
   return {
-    notes: notes,
+    notes: state.notes,
     isFetching: isFetching
   }
 }
