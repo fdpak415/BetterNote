@@ -38,7 +38,6 @@ const Root = ({store}) => (
       <Route path="/login" component={AuthFormContainer} onEnter={_redirectIfLoggedIn}/>
       <Route path="/notebook/new" component={NotebookFormContainer} onEnter={_ensureLoggedIn} />
       <Route path="/note/new" component={NoteFormContainer} onEnter={_ensureLoggedIn} />
-      <Route path="/search/notes" component={SearchFormContainer} onEnter={_ensureLoggedIn} />
       <Route path="/search/tags" component={TagSearchContainer} onEnter={_ensureLoggedIn} />
     </Router>
   </Provider>

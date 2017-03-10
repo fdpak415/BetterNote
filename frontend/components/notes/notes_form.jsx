@@ -41,9 +41,9 @@ class NoteForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const note = this.state;
-    this.props.createNote({note})
+    this.props.createNote({note}).then()
     this.props.router.push("/")
-
+    window.location.reload();
   }
 
   update(property) {
@@ -57,7 +57,6 @@ class NoteForm extends React.Component {
     this.props.router.push({
       pathname: '/',
       query: 123});
-    debugger;
   }
 
   render() {
@@ -66,7 +65,10 @@ class NoteForm extends React.Component {
       <div>
         <form onSubmit={(e) => this.handleSubmit(e)}>
 
-          <NotebookSelector addNotebook={this.addNotebook} notebooks={notebooks} />
+          <select  onChange={ e => this.addNotebook(e.currentTarget.value)}>
+            { notebooks.map((book, i) => <option key={i} value={book.id}>{book.title}</option>)}
+          </select>
+
           <br></br>
 
           Tags: <TagForm addTag={this.addTag} />

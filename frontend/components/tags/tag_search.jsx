@@ -11,6 +11,7 @@ class TagSearch extends React.Component {
     }
 
     this.onChange = this.onChange.bind(this);
+    this.cancelButton = this.cancelButton.bind(this);
   }
 
   componentWillMount() {
@@ -50,6 +51,13 @@ class TagSearch extends React.Component {
     });
   };
 
+  cancelButton(e) {
+    e.preventDefault();
+    this.props.router.push({
+      pathname: '/',
+      query: 123});
+  }
+
   renderSuggestions(suggestions) {
     if (this.state.value === '') {
       suggestions = Object.values(this.props.tags)
@@ -79,6 +87,13 @@ class TagSearch extends React.Component {
           onChange={this.onChange}></input>
 
         {this.renderSuggestions(suggestions)}
+
+        <br></br>
+
+        <input
+          type="button"
+          value="Cancel"
+          onClick={this.cancelButton}></input>
 
       </div>
     );

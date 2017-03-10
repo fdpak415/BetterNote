@@ -3,6 +3,7 @@ import {withRouter} from 'react-router';
 import TagForm2 from '../tags/tag_form2';
 import NotebookSelector from './notebook_selector';
 import TagDetail from '../tags/tag_detail';
+import { values } from 'lodash';
 
 class NoteDetail extends React.Component {
   constructor(props){
@@ -15,6 +16,7 @@ class NoteDetail extends React.Component {
       author_id: this.props.userId
     }
 
+    this.addNotebook = this.addNotebook.bind(this);
   }
 
   componentWillMount() {
@@ -24,13 +26,12 @@ class NoteDetail extends React.Component {
 
   }
 
-
-
   componentWillReceiveProps(nextProps) {
     if (this.props.params.noteId !== nextProps.params.noteId) {
-      this.props.fetchNote(nextProps.params.noteId);
+      this.props.fetchNote(parseInt(nextProps.params.noteId));
     }
-    this.forceUpdate()
+    this.setState({title: nextProps.noteDetail.title,
+                   body: nextProps.noteDetail.body});
   }
 
   routeIsCorrect() {
@@ -43,16 +44,24 @@ class NoteDetail extends React.Component {
     const id = parseInt(this.props.params.noteId)
     this.props.updateNote(id, {note})
     this.props.router.push("/")
+    window.location.reload();
   }
 
   update(property) {
     return e => {
       this.setState({[property]: e.currentTarget.value});
+
     }
   }
 
+  addNotebook(bookId) {
+    const notebookId = this.state.notebook_id
+    this.setState({notebook_id: bookId});
+    this.forceUpdate();
+  }
+
   render() {
-    const notebooks = Object.values(this.props.notebooks)
+    const notebooks = values(this.props.notebooks)
     const noteDetail = this.props.noteDetail;
 
     return(
@@ -60,7 +69,7 @@ class NoteDetail extends React.Component {
         {this.props.noteDetail.title ?
         <form onSubmit={(e) => this.handleSubmit(e)}>
 
-          <NotebookSelector notebooks={notebooks} />
+          <NotebookSelector addNotebook={this.addNotebook} noteDetail={noteDetail} updateNote={this.props.updateNote} notebooks={notebooks} />
           <br></br>
 
           Tags:
@@ -71,13 +80,12 @@ class NoteDetail extends React.Component {
 
           <input
             type="text"
-            defaultValue={noteDetail.title}
-
+            value={this.state.title}
             onChange={this.update('title')}></input>
           <br></br>
 
           <textarea
-            defaultValue={noteDetail.body}
+            value={this.state.body}
 
             onChange={this.update('body')}></textarea>
 

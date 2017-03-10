@@ -4,16 +4,15 @@ import {RECEIVE_TAG, RECEIVE_TAGS, DELETE_TAG} from '../actions/note_actions';
 import merge from 'lodash/merge';
 
 
-const NoteReducer = (state = {isFetching: false}, action) => {
+const NoteReducer = (state = {}, action) => {
   Object.freeze(state);
   let newState = merge({}, state)
   switch (action.type) {
 
-    case REQUEST_NOTES:
-      return merge(newState, {isFetching: true})
+
     case RECEIVE_NOTES:
       const notes = action.notes
-      return merge(newState, {isFetching: false}, notes);
+      return merge(newState, notes);
     case DELETE_NOTE:
       const noteId = action.note.id;
       delete newState[noteId];

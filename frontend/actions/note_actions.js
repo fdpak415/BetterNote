@@ -34,7 +34,6 @@ export const createNote = note => dispatch => (
 );
 
 export const fetchNotes = () => dispatch => {
-  dispatch(requestNotes())
   return APIUtil.fetchNotes()
   .then(notes => (dispatch(receiveNotes(notes))))
 };

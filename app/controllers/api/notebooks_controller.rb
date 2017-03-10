@@ -1,7 +1,8 @@
 class Api::NotebooksController < ApplicationController
 
   def index
-    @notebooks = Notebook.all
+    @user = current_user
+    @notebooks = @user.notebooks
     render :index
   end
 
@@ -19,7 +20,7 @@ class Api::NotebooksController < ApplicationController
   end
 
   def update
-    
+
     @notebook = Notebook.find(notebook_params[:id])
       if @notebook.update!(notebook_params)
         render :show

@@ -13,19 +13,21 @@ class SearchForm extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.onChange = this.onChange.bind(this);
     this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
+    this.renderSuggestions = this.renderSuggestions.bind(this);
+    this.cancelButton = this.cancelButton.bind(this);
   }
 
   componentWillMount() {
     this.props.fetchNotes()
+
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.location.key !== this.props.location.key) {
-      this.props.fetchNotes();
+    if (nextProps.notes !== this.props.notes) {
       this.forceUpdate();
     }
-  }
 
+  }
 
   onChange(e) {
     this.setState({
@@ -40,7 +42,7 @@ class SearchForm extends React.Component {
   }
 
   getSuggestions(value) {
-    const noteList = Object.values(this.props.notes)
+    const noteList =  Object.values(this.props.notes)
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
 
@@ -62,12 +64,12 @@ class SearchForm extends React.Component {
     this.setState({
       suggestions: []
     });
+
   };
 
   renderSuggestions(suggestions) {
     if (this.state.value === '') {
       suggestions = Object.values(this.props.notes)
-      suggestions.splice(-1);
     }
 
     return (
@@ -84,19 +86,49 @@ class SearchForm extends React.Component {
     )
   };
 
+  cancelButton(e) {
+    e.preventDefault();
+    this.props.router.push({
+      pathname: '/',
+      query: 123});
+  }
+
 
   render() {
     const {isFetching} = this.props;
-    debugger;
+    const {suggestions, value} = this.state;
+    if (this.props.routes.path === "/search/notes") {
     return(
       <div>
-        {isFetching &&
-          <div>Loading...</div>
-        }
-        {!isFetching &&
-        <SearchFormList suggestions={this.state.suggestions} renderSuggestions={this.renderSuggestions}/>}
+        <input
+          type="text"
+          placeholder="Search Notes..."
+          value={this.props.value}
+          onChange={this.onChange}></input>
+
+        {this.renderSuggestions(suggestions)}
+
+        <br></br>
+
+          <input
+            type="button"
+            value="Cancel"
+            onClick={this.cancelButton}></input>
+
       </div>
-    )
+    )} else {
+      return(
+        <div>
+          <input
+            type="text"
+            placeholder="Search Notes..."
+            value={this.props.value}
+            onChange={this.onChange}></input>
+
+          {this.renderSuggestions(suggestions)}
+        </div>
+      )
+    }
 
   }
 }
