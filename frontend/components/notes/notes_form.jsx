@@ -54,9 +54,7 @@ class NoteForm extends React.Component {
 
   cancelButton(e) {
     e.preventDefault();
-    this.props.router.push({
-      pathname: '/',
-      query: 123});
+    this.props.router.push('/');
   }
 
   render() {

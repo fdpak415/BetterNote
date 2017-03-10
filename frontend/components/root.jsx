@@ -10,6 +10,8 @@ import NotesContainer from './notes/notes_container';
 import NotesDetailContainer from './notes/notes_detail_container';
 import SearchFormContainer from './search/search_form_container';
 import TagSearchContainer from './tags/tag_search_container';
+import NotebooksContainer from './notebook/notebooks_container';
+
 
 const _ensureLoggedIn = (nextState, replace) => {
     const currentUser = store.getState().session.currentUser;
@@ -36,8 +38,9 @@ const Root = ({store}) => (
       </Route>
       <Route path="/signup" component={AuthFormContainer} onEnter={_redirectIfLoggedIn}/>
       <Route path="/login" component={AuthFormContainer} onEnter={_redirectIfLoggedIn}/>
-      <Route path="/notebook/new" component={NotebookFormContainer} onEnter={_ensureLoggedIn} />
+      <Route path="/notebooks" component={NotebooksContainer} onEnter={_ensureLoggedIn} />
       <Route path="/note/new" component={NoteFormContainer} onEnter={_ensureLoggedIn} />
+      <Route path="/notebook/new" component={NotebookFormContainer} onEnter={_ensureLoggedIn} />
       <Route path="/search/tags" component={TagSearchContainer} onEnter={_ensureLoggedIn} />
     </Router>
   </Provider>

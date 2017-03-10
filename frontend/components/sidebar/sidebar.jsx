@@ -23,7 +23,7 @@ class Sidebar extends React.Component {
           </li>
 
           <li>
-            <button onClick={e => this.handleClick(e, '/notebook/new')}>New Notebook</button>
+            <button onClick={e => this.handleClick(e, '/notebooks')}>Notebooks</button>
           </li>
 
           <li>
