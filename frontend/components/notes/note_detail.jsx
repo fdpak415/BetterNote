@@ -5,6 +5,8 @@ import NotebookSelector from './notebook_selector';
 import TagDetail from '../tags/tag_detail';
 import { values } from 'lodash';
 
+
+
 class NoteDetail extends React.Component {
   constructor(props){
     super(props);
@@ -17,13 +19,13 @@ class NoteDetail extends React.Component {
     }
 
     this.addNotebook = this.addNotebook.bind(this);
+    this.update = this.update.bind(this);
   }
 
   componentWillMount() {
     this.props.fetchNote(parseInt(this.props.params.noteId))
     .done(note => this.forceUpdate());
     this.props.fetchNotebooks();
-
   }
 
   componentWillReceiveProps(nextProps) {
@@ -47,11 +49,10 @@ class NoteDetail extends React.Component {
     window.location.reload();
   }
 
-  update(property) {
-    return e => {
-      this.setState({[property]: e.currentTarget.value});
+  update(e, property) {
 
-    }
+    this.setState({[property]: e.currentTarget.value});
+
   }
 
   addNotebook(bookId) {
@@ -81,13 +82,14 @@ class NoteDetail extends React.Component {
           <input
             type="text"
             value={this.state.title}
-            onChange={this.update('title')}></input>
+            onChange={e => this.update(e, 'title')}></input>
           <br></br>
 
           <textarea
             value={this.state.body}
+            onChange={e => this.update(e, 'body')}></textarea>
 
-            onChange={this.update('body')}></textarea>
+          <br></br>
 
           <input
             type="submit"
