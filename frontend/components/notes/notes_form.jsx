@@ -10,7 +10,7 @@ class NoteForm extends React.Component {
     this.state = {
       title: '',
       body: '',
-      notebook_id: 1,
+      notebook_id: '',
       author_id: this.props.userId,
       tags: []
     }
@@ -23,6 +23,12 @@ class NoteForm extends React.Component {
 
   componentWillMount() {
     this.props.fetchNotebooks();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.notebooks !== this.props.notebooks) {
+      this.setState({notebook_id: Object.values(nextProps.notebooks)[0].id})
+    }
   }
 
   addTag(tag) {
@@ -54,9 +60,7 @@ class NoteForm extends React.Component {
 
   cancelButton(e) {
     e.preventDefault();
-    this.props.router.push({
-      pathname: '/',
-      query: 123});
+    this.props.router.push('/');
   }
 
   render() {

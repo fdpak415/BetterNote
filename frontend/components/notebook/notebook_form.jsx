@@ -17,9 +17,10 @@ class NotebookForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const notebook = this.state
-    this.props.createNotebook({notebook})
-    this.props.router.push("/")
+    const notebook = this.state;
+    this.props.createNotebook({notebook});
+    this.props.router.push("/notebooks");
+    window.location.reload();
   }
 
   update(property) {
@@ -30,7 +31,7 @@ class NotebookForm extends React.Component {
 
   cancelButton(e) {
     e.preventDefault();
-    this.props.router.push('/');
+    this.props.router.push('/notebooks');
   }
 
   render() {

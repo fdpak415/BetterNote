@@ -1,7 +1,15 @@
 class Api::TagsController < ApplicationController
 
   def index
-    @tags = Tag.all
+    @user = current_user
+    @notes = @user.notes
+    @tags = []
+    @notes.each do |note|
+      note.tags.each do |tag|
+        @tags.push(tag)
+      end
+    end
+    @tags = @tags.uniq
     render :index
   end
 

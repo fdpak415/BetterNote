@@ -4,6 +4,9 @@ import TagForm2 from '../tags/tag_form2';
 import NotebookSelector from './notebook_selector';
 import TagDetail from '../tags/tag_detail';
 import { values } from 'lodash';
+import ReactQuill from 'react-quill';
+import Editor from '../../util/editor';
+import {Col} from 'react-bootstrap';
 
 class NoteDetail extends React.Component {
   constructor(props){
@@ -17,13 +20,14 @@ class NoteDetail extends React.Component {
     }
 
     this.addNotebook = this.addNotebook.bind(this);
+    this.update = this.update.bind(this);
+    this.updateNotebookId = this.updateNotebookId.bind(this);
   }
 
   componentWillMount() {
     this.props.fetchNote(parseInt(this.props.params.noteId))
     .done(note => this.forceUpdate());
     this.props.fetchNotebooks();
-
   }
 
   componentWillReceiveProps(nextProps) {
@@ -47,11 +51,12 @@ class NoteDetail extends React.Component {
     window.location.reload();
   }
 
-  update(property) {
-    return e => {
-      this.setState({[property]: e.currentTarget.value});
+  update(e, property) {
+    this.setState({[property]: e.currentTarget.value});
+  }
 
-    }
+  updateNotebookId(notebookId) {
+    this.setState({notebook_id: notebookId})
   }
 
   addNotebook(bookId) {
@@ -65,38 +70,41 @@ class NoteDetail extends React.Component {
     const noteDetail = this.props.noteDetail;
 
     return(
-      <div>
-        {this.props.noteDetail.title ?
-        <form onSubmit={(e) => this.handleSubmit(e)}>
+      <Col xs={8}>
+        <div className="note-detail col-xs-offset-1">
 
-          <NotebookSelector addNotebook={this.addNotebook} noteDetail={noteDetail} updateNote={this.props.updateNote} notebooks={notebooks} />
-          <br></br>
+          <form onSubmit={(e) => this.handleSubmit(e)}>
 
-          Tags:
-          <TagDetail note={noteDetail}/>
-          <TagForm2 noteDetail={this.props.noteDetail} createTag={this.props.createTag} />
+            <NotebookSelector addNotebook={this.addNotebook} noteDetail={noteDetail} update={this.updateNotebookId} notebooks={notebooks} />
+            <br></br>
 
-          <br></br>
+            Tags:
+            <TagDetail note={noteDetail}/>
+            <TagForm2 noteDetail={this.props.noteDetail} createTag={this.props.createTag} />
 
-          <input
-            type="text"
-            value={this.state.title}
-            onChange={this.update('title')}></input>
-          <br></br>
+            <br></br>
 
-          <textarea
-            value={this.state.body}
+            <input
+              type="text"
+              value={this.state.title}
+              onChange={e => this.update(e, 'title')}></input>
+            <br></br>
 
-            onChange={this.update('body')}></textarea>
+            <textarea
+              value={this.state.body}
+              onChange={e => this.update(e, 'body')}></textarea>
 
-          <input
-            type="submit"
-            value="Update Note"></input>
+            <br></br>
 
-        </form>
-        :
-          <div>Loading...</div>}
-      </div>
+            <input
+              type="submit"
+              value="Update Note"></input>
+
+          </form>
+
+        </div>
+      </Col>
+
     )
   }
 }

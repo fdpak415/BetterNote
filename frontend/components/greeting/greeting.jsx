@@ -20,6 +20,7 @@ class Greeting extends React.Component {
 
   handleClick() {
     this.props.logout();
+    this.props.userLogout();
   }
 
   render() {

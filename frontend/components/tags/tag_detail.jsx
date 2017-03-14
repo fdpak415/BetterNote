@@ -11,7 +11,7 @@ class TagDetail extends React.Component {
 
     return(
       <div>
-        {tags.map((tag, i) => <span key={i}>{tag.name}</span>)}
+        {tags.map((tag, i) => <span key={i}>{tag.name}  </span>)}
       </div>
     )
   }

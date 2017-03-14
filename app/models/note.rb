@@ -1,10 +1,11 @@
 class Note < ApplicationRecord
   validates :title, :notebook_id, :author_id, presence: true
-  validates :title, uniqueness: true
+  validates :title, uniqueness: {scope: :author_id}
 
   has_many :taggings
   has_many :tags, through: :taggings
   belongs_to :user, foreign_key: 'author_id'
+  belongs_to :notebook, foreign_key: 'notebook_id'
 
 
   def self.tagged_with(name)
