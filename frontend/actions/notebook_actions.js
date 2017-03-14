@@ -12,9 +12,9 @@ export const receiveNotebook = notebook => ({
   notebook
 });
 
-export const deleteNotebook = notebook => ({
+export const deleteNotebook = id => ({
   type: DELETE_NOTEBOOK,
-  notebook
+  id
 });
 
 export const receiveNotebooks = notebooks => ({
@@ -44,5 +44,5 @@ export const updateNotebook = (id, data) => dispatch => (
 
 export const destroyNotebook = (id) => dispatch => (
   APIUtil.deleteNotebook(id)
-  .then((notebook) => (dispatch(deleteNotebook(notebook))))
+  .then((id) => (dispatch(deleteNotebook(id))))
 );

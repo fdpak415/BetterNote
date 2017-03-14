@@ -1,8 +1,6 @@
 import React from 'react';
 import {withRouter} from 'react-router';
 import NotesIndex from './notes_index';
-import SearchForm from '../search/search_form';
-import LoadingPlaceholder from './loading_placeholder';
 import {fetchTag} from '../../util/tag_api_util';
 
 class Notes extends React.Component {

@@ -8,6 +8,8 @@ class Api::NotebooksController < ApplicationController
 
   def show
     @notebook = Notebook.find(notebook_params[:id])
+    @notes = Note.find_by_notebook_id(notebook_params[:id])
+    render :show
   end
 
   def create
@@ -32,7 +34,7 @@ class Api::NotebooksController < ApplicationController
   def destroy
     @notebook = Notebook.find(notebook_params[:id])
     @notebook.destroy!
-      render :show
+    render :destroy
   end
 
   private

@@ -8,7 +8,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchNotebooks: () => dispatch(fetchNotebooks()),
-  destroyNotebook: id => dispatch(destroyNotebooks(id))
+  destroyNotebook: id => dispatch(destroyNotebook(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Notebooks);

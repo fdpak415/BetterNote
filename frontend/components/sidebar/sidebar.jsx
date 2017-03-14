@@ -1,5 +1,6 @@
 import React from 'react';
 import {withRouter} from 'react-router';
+import {Image, Button} from 'react-bootstrap';
 
 class Sidebar extends React.Component {
   constructor(props) {
@@ -16,20 +17,23 @@ class Sidebar extends React.Component {
 
   render() {
     return(
-      <div>
-        <ul>
+      <div >
+        <Image src="https://cdn2.iconfinder.com/data/icons/bitsies/128/Pen-128.png" rounded className="logo"/>
+
+        <ul >
           <li>
-            <button onClick={e => this.handleClick(e, '/note/new')}>New Note</button>
+            <Button bsStyle="success" onClick={e => this.handleClick(e, '/note/new')}>New Note</Button>
           </li>
 
           <li>
-            <button onClick={e => this.handleClick(e, '/notebooks')}>Notebooks</button>
+            <Button bsStyle="success" onClick={e => this.handleClick(e, '/notebooks')}>Notebooks</Button>
           </li>
 
           <li>
-            <button onClick={e => this.handleClick(e, '/search/tags')}>Search Tags</button>
+            <Button bsStyle="success" onClick={e => this.handleClick(e, '/search/tags')}>Search Tags</Button>
           </li>
         </ul>
+
       </div>
 
     )

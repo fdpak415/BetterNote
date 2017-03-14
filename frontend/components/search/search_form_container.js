@@ -9,7 +9,8 @@ const mapStateToProps = (state) => {
 
   return {
     notes: state.notes,
-    isFetching: isFetching
+    isFetching: isFetching,
+    user: state.session.currentUser
   }
 }
 

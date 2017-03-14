@@ -1,7 +1,7 @@
 import React from 'react';
 import values from 'lodash/values';
 import {Link, withRouter} from 'react-router';
-import SearchFormList from './search_form_list';
+import {FormControl} from 'react-bootstrap';
 
 class SearchForm extends React.Component {
   constructor(props) {
@@ -15,18 +15,17 @@ class SearchForm extends React.Component {
     this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
     this.renderSuggestions = this.renderSuggestions.bind(this);
     this.cancelButton = this.cancelButton.bind(this);
+    this.renderNotes = this.renderNotes.bind(this);
   }
 
   componentWillMount() {
     this.props.fetchNotes()
-
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.notes !== this.props.notes) {
       this.forceUpdate();
     }
-
   }
 
   onChange(e) {
@@ -39,6 +38,7 @@ class SearchForm extends React.Component {
   handleClick(e, suggestion) {
     e.preventDefault();
     this.props.destroyNote(suggestion.id);
+    window.location.reload();
   }
 
   getSuggestions(value) {
@@ -47,7 +47,7 @@ class SearchForm extends React.Component {
     const inputLength = inputValue.length;
 
     return inputLength === 0 ? [] : noteList.filter(note =>
-      (note.title.toLowerCase().slice(0, inputLength) === inputValue) ||
+      (note.title.toLowerCase().includes(inputValue)) ||
       (note.body.toLowerCase().includes(inputValue))
   )};
 
@@ -93,6 +93,12 @@ class SearchForm extends React.Component {
       query: 123});
   }
 
+  renderNotes() {
+    return(
+      <h2>Notes</h2>
+    )
+  }
+
 
   render() {
     const {isFetching} = this.props;
@@ -100,11 +106,13 @@ class SearchForm extends React.Component {
     if (this.props.routes.path === "/search/notes") {
     return(
       <div>
-        <input
+        <FormControl
+          className="seach-bar"
+          bsSize="large"
           type="text"
           placeholder="Search Notes..."
           value={this.props.value}
-          onChange={this.onChange}></input>
+          onChange={this.onChange}/>
 
         {this.renderSuggestions(suggestions)}
 
@@ -119,11 +127,16 @@ class SearchForm extends React.Component {
     )} else {
       return(
         <div>
-          <input
+          <FormControl
+            className="seach-bar"
+            bsSize="large"
             type="text"
             placeholder="Search Notes..."
             value={this.props.value}
-            onChange={this.onChange}></input>
+            onChange={this.onChange}/>
+
+
+          <h2>Notes</h2>
 
           {this.renderSuggestions(suggestions)}
         </div>

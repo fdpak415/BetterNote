@@ -14,7 +14,6 @@ class Notebooks extends React.Component {
 
   componentWillMount() {
     this.props.fetchNotebooks()
-
   }
 
   componentWillReceiveProps(nextProps) {
@@ -26,6 +25,7 @@ class Notebooks extends React.Component {
   handleClick(e, book) {
     e.preventDefault();
     this.props.destroyNotebook(book.id);
+    window.location.reload();
   }
 
   handleButton(e, path) {
@@ -43,11 +43,11 @@ class Notebooks extends React.Component {
       <ul>
         {notebooks.map((book, i) =>
         <li key={i}>
-          <Link to={`/notes/${book.id}`}>
+          <Link to={`/notebooks/${book.id}`}>
             <span>{book.title}</span>
           </Link>
           <button
-          onClick={e => this.props.handleClick(e, book)}>Delete Notebook</button>
+          onClick={e => this.handleClick(e, book)}>Delete Notebook</button>
         </li>)}
       </ul>
     )

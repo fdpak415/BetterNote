@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router';
+import {Link, withRouter} from 'react-router';
 
 class NotesIndex extends React.Component {
   constructor(props) {
@@ -9,6 +9,7 @@ class NotesIndex extends React.Component {
   render() {
     const notes = this.props.notes
     const tagDetail = this.props.tagDetail
+    if (this.props.location.pathname.includes("searchtag")) {
       return(
         <div>
           <h2>{tagDetail.name}:</h2>
@@ -21,8 +22,22 @@ class NotesIndex extends React.Component {
             </li>)}
           </ul>
        </div>
-     )
+     )} else {
+       return(
+         <div>
+           <h2>{this.props.notebook.title}:</h2>
+           <ul>
+             {notes.map((note, i) =>
+             <li key={i}>
+               <Link to={`notebooks/notebookId/notes/${note.id}`}>
+                 <span>{note.title}</span>
+               </Link>
+             </li>)}
+           </ul>
+        </div>
+      )
+     }
   }
 }
 
-export default NotesIndex;
+export default withRouter(NotesIndex);

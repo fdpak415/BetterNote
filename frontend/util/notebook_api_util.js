@@ -16,7 +16,8 @@ export const fetchNotebooks = () => {
 export const fetchNotebook = (id) => {
   return $.ajax({
     url: `/api/notebooks/${id}`,
-    method: 'GET'
+    method: 'GET',
+    data: {"notebook": {id: id}}
   })
 }
 
@@ -30,6 +31,7 @@ export const updateNotebook = (id, data) => {
 }
 
 export const deleteNotebook = (id) => {
+
   return $.ajax({
     url: `/api/notebooks/${id}`,
     method: 'DELETE',
