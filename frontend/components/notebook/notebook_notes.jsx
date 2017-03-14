@@ -21,17 +21,19 @@ class NotebookNotes extends React.Component {
       this.props.fetchNotebook(parseInt(this.props.params.notebookId));
       fetchNotebook(parseInt(this.props.params.notebookId))
       .done(notebook => this.setState({notes: notebook.notes, notebook: notebook}))
+
     }
 
     componentWillReceiveProps(nextProps) {
       if (nextProps.notes !== this.props.notes) {
-        this.setState({notes: nextProps.notes.notes})
+        this.setState({notes: nextProps.notes})
+
       }
     }
 
 
   render() {
-    const notes = [this.state.notes];
+    const notes = this.state.notes;
     const notebook = this.state.notebook
     return(
       <div>

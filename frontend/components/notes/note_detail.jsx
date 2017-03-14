@@ -35,7 +35,8 @@ class NoteDetail extends React.Component {
       this.props.fetchNote(parseInt(nextProps.params.noteId));
     }
     this.setState({title: nextProps.noteDetail.title,
-                   body: nextProps.noteDetail.body});
+                   body: nextProps.noteDetail.body,
+                   notebook_id: nextProps.noteDetail.notebook_id});
   }
 
   routeIsCorrect() {
@@ -68,6 +69,8 @@ class NoteDetail extends React.Component {
   render() {
     const notebooks = values(this.props.notebooks)
     const noteDetail = this.props.noteDetail;
+    const notebookId = this.props.noteDetail.notebook_ids
+    const notebook = notebooks.filter(book => book.id === notebookId)[0]
 
     return(
       <Col xs={8}>
@@ -75,7 +78,7 @@ class NoteDetail extends React.Component {
 
           <form onSubmit={(e) => this.handleSubmit(e)}>
 
-            <NotebookSelector addNotebook={this.addNotebook} noteDetail={noteDetail} update={this.updateNotebookId} notebooks={notebooks} />
+            <NotebookSelector notebookId={notebookId} addNotebook={this.addNotebook} noteDetail={noteDetail} update={this.updateNotebookId} notebooks={notebooks} />
             <br></br>
 
             Tags:
