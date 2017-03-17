@@ -6,7 +6,7 @@ import TagDetail from '../tags/tag_detail';
 import { values } from 'lodash';
 import ReactQuill from 'react-quill';
 import Editor from '../../util/editor';
-import {Col} from 'react-bootstrap';
+import {Col, Row} from 'react-bootstrap';
 
 class NoteDetail extends React.Component {
   constructor(props){
@@ -73,10 +73,11 @@ class NoteDetail extends React.Component {
     const notebook = notebooks.filter(book => book.id === notebookId)[0]
 
     return(
-      <Col xs={8}>
-        <div className="note-detail col-xs-offset-1">
 
-          <form onSubmit={(e) => this.handleSubmit(e)}>
+
+        <div className="note-detail-div">
+
+          <form className="note-detail-form" onSubmit={(e) => this.handleSubmit(e)}>
 
             <NotebookSelector notebookId={notebookId} addNotebook={this.addNotebook} noteDetail={noteDetail} update={this.updateNotebookId} notebooks={notebooks} />
             <br></br>
@@ -94,19 +95,21 @@ class NoteDetail extends React.Component {
             <br></br>
 
             <textarea
+              className="text-area"
               value={this.state.body}
               onChange={e => this.update(e, 'body')}></textarea>
 
             <br></br>
 
             <input
+              className="update-note-button"
               type="submit"
               value="Update Note"></input>
 
           </form>
 
         </div>
-      </Col>
+
 
     )
   }

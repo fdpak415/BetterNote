@@ -127,6 +127,7 @@ class SearchForm extends React.Component {
     )} else {
       return(
         <div>
+          <h1 className="notes-header">Notes</h1>
           <FormControl
             className="seach-bar"
             bsSize="large"
@@ -135,9 +136,7 @@ class SearchForm extends React.Component {
             value={this.props.value}
             onChange={this.onChange}/>
 
-
-          <h2>Notes</h2>
-
+          <br></br>
           {this.renderSuggestions(suggestions)}
         </div>
       )

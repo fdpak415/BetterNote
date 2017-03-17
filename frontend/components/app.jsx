@@ -7,28 +7,29 @@ import SearchFormContainer from './search/search_form_container';
 import {Grid, Row, Col, Rounded, Image, Clearfix} from 'react-bootstrap';
 
 const App = ({children}) => (
-  <div>
-  <Grid id="grid" fluid={true}>
+  <div id="wrapper">
+    <div id="sidebar-wrapper">
+      <Sidebar className="sidebar-nav"/>
+    </div>
 
-      <Col id="sidebar" xs={1}>
-        <Sidebar />
-      </Col>
+    <div id="page-content-wrapper">
+      <div className="page-content">
+        <Grid fluid={true} >
 
+        <Row>
+          <Col xs={4} className="search-form">
+            <SearchFormContainer />
+          </Col>
 
-      <Col xs={4}>
-        <h1 className="home-header col-xs-offset-3">BetterNote</h1>
-      </Col>
+          <Col xs={7} className="note-detail">
+            {children}
+          </Col>
 
-      <Col xs={4} className="pull-right text-right">
-        <GreetingContainer />
-      </Col>
-    <Row>
-      <Col xs={3} className="col-xs-offset-1 search-form">
-        <SearchFormContainer />
-      </Col>
-    </Row>
-      {children}
-  </Grid>
+        </Row>
+        </Grid>
+      </div>
+    </div>
+
   </div>
 );
 

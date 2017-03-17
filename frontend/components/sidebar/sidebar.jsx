@@ -1,6 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router';
 import {Image, Button} from 'react-bootstrap';
+import GreetingContainer from '../greeting/greeting_container';
 
 class Sidebar extends React.Component {
   constructor(props) {
@@ -34,6 +35,7 @@ class Sidebar extends React.Component {
           </li>
         </ul>
 
+        <GreetingContainer />
       </div>
 
     )
