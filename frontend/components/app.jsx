@@ -21,7 +21,7 @@ const App = ({children}) => (
             <SearchFormContainer />
           </Col>
 
-          <Col xs={7} className="note-detail">
+          <Col xs={8} className="note-detail">
             {children}
           </Col>
 

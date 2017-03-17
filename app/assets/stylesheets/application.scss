@@ -94,6 +94,31 @@ table {
   padding: 0;
 }
 
+.sidebar-div {
+  height: 100%;
+  position: relative;
+}
+
+.sidebar-button-container {
+  margin-top: 20px;
+  text-align: center;
+  position: absolute;
+  top: 80px;
+  height: 120px;
+  width: 100%;
+}
+
+.sidebar-button-container > li {
+margin-top: 15px;
+}
+
+.greeting-container {
+  position: absolute;
+  bottom: 30px;
+  left: 5px;
+  text-align: center;
+}
+
 .header-col {
   border-right: 1px solid gray;
 }
@@ -126,7 +151,6 @@ table {
 
 .search-form {
   height: calc(100vh);
-  background-color: yellow;
   border: 1px solid black;
   position: relative;
 }
@@ -140,8 +164,6 @@ input {
 }
 
 .note-detail{
-  margin-left: 20px;
-  background-color: lightblue;
   height: calc(100vh );
   position: relative;
 }

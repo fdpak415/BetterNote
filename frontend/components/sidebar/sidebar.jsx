@@ -18,10 +18,10 @@ class Sidebar extends React.Component {
 
   render() {
     return(
-      <div >
+      <div className="sidebar-div">
         <Image src="https://cdn2.iconfinder.com/data/icons/bitsies/128/Pen-128.png" rounded className="logo"/>
 
-        <ul >
+        <ul className="sidebar-button-container">
           <li>
             <Button bsStyle="success" onClick={e => this.handleClick(e, '/note/new')}>New Note</Button>
           </li>
@@ -35,7 +35,7 @@ class Sidebar extends React.Component {
           </li>
         </ul>
 
-        <GreetingContainer />
+        <GreetingContainer className="greeting-container"/>
       </div>
 
     )
