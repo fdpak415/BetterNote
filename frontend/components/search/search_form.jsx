@@ -73,15 +73,20 @@ class SearchForm extends React.Component {
     }
 
     return (
-          <ul>
+          <ul className="notes-suggestions">
             {suggestions.map((suggestion, i) =>
+            <Link to={`/notes/${suggestion.id}`}>
             <li key={i}>
-              <Link to={`/notes/${suggestion.id}`}>
+
                 <span>{suggestion.title}</span>
-              </Link>
+                <br></br>
+                <span>{suggestion.created_at}</span>
+                <span>{suggestion.body}</span>
+
               <button
               onClick={e => this.handleClick(e, suggestion)}>Delete Note</button>
-            </li>)}
+            </li>
+            </Link>)}
           </ul>
     )
   };
@@ -129,7 +134,7 @@ class SearchForm extends React.Component {
         <div>
           <h1 className="notes-header">Notes</h1>
           <FormControl
-            className="seach-bar"
+            className="search-bar"
             bsSize="large"
             type="text"
             placeholder="Search Notes..."

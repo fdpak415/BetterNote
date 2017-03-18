@@ -153,11 +153,28 @@ margin-top: 15px;
   height: calc(100vh);
   border: 1px solid black;
   position: relative;
+  padding: 0 !important;
 }
 
 .notes-header {
   text-align: center;
+  margin-bottom: 20px;
 }
+
+.notes-suggestions {
+  li {
+    border-top: 1px solid black;
+    padding: 20px;
+    width: 100%;
+  }
+
+  li:last-child {
+    border-bottom: 1px solid black;
+  }
+
+}
+
+
 
 input {
   font-size: 2em !important;
