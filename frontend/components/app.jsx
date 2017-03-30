@@ -4,6 +4,7 @@ import AuthFormContainer from './authform/auth_form_container';
 import Sidebar from './sidebar/sidebar';
 import NotesContainer from './notes/notes_container'
 import SearchFormContainer from './search/search_form_container';
+import NotesDetailContainer from './notes/notes_detail_container';
 import {Grid, Row, Col, Rounded, Image, Clearfix} from 'react-bootstrap';
 
 const App = ({children}) => (
@@ -22,7 +23,7 @@ const App = ({children}) => (
           </Col>
 
           <Col xs={8} className="note-detail">
-            {children}
+            <NotesDetailContainer />
           </Col>
 
         </Row>

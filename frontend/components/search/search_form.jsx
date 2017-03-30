@@ -75,12 +75,13 @@ class SearchForm extends React.Component {
     return (
           <ul className="notes-suggestions">
             {suggestions.map((suggestion, i) =>
-            <Link to={`/notes/${suggestion.id}`}>
+            <Link to={`/notes/${suggestion.id}`} key={i}>
             <li key={i}>
 
                 <span>{suggestion.title}</span>
                 <br></br>
                 <span>{suggestion.created_at}</span>
+                <br></br>
                 <span>{suggestion.body}</span>
 
               <button
@@ -112,7 +113,7 @@ class SearchForm extends React.Component {
     return(
       <div>
         <FormControl
-          className="seach-bar"
+          className="search-bar"
           bsSize="large"
           type="text"
           placeholder="Search Notes..."

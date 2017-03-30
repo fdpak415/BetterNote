@@ -14,7 +14,7 @@ const NoteDetailReducer = (state = {tags: {}}, action) => {
       const newTag = {[action.tag.id]: action.tag};
       return merge({}, state, newTag);
     case RECEIVE_TAGS:
-      const newTags = action.tags
+      const newTags = action.tags;
       return merge({}, state, newTags)
     default:
     return state;

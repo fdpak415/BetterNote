@@ -167,14 +167,11 @@ margin-top: 15px;
     padding: 20px;
     width: 100%;
   }
-
-  li:last-child {
-    border-bottom: 1px solid black;
-  }
-
 }
 
-
+.notes-suggestions a:last-of-type li {
+    border-bottom: 1px solid black;
+}
 
 input {
   font-size: 2em !important;
