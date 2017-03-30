@@ -7,9 +7,12 @@ class Api::NotebooksController < ApplicationController
   end
 
   def show
+
     @notebook = Notebook.find(notebook_params[:id])
-    @notes = Note.find_by_notebook_id(notebook_params[:id])
+    @notes = Note.where("notebook_id = ?", notebook_params[:id])
+
     render :show
+
   end
 
   def create

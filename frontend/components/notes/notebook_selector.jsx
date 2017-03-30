@@ -8,6 +8,14 @@ class NotebookSelector extends React.Component {
       value: this.props.noteDetail.notebook_id
     }
     this.update = this.update.bind(this);
+    this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.noteDetail !== this.props.noteDetail) {
+      this.setState({value: nextProps.noteDetail.notebook_id});
+    }
+
   }
 
   update(e) {
@@ -18,11 +26,17 @@ class NotebookSelector extends React.Component {
   render() {
     const notebooks = this.props.notebooks;
     const bookId = this.props.noteDetail.notebook_id
-    debugger;
+
     return(
-        <select value={this.state.value} onChange={e => this.update(e)}>
+      <div>
+        {this.state.value ?
+        <select value={this.state.value} onChange={this.update}>
           { notebooks.map((book, i) => <option  key={i} value={book.id}>{book.title}</option>)}
         </select>
+        :
+        <div>loading</div>}
+      </div>
+
     )
   }
 }
