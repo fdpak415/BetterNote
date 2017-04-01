@@ -1,4 +1,5 @@
 import React from 'react';
+import {withRouter} from 'react-router';
 
 class TagDetail extends React.Component {
   constructor(props){
@@ -8,13 +9,19 @@ class TagDetail extends React.Component {
 
   render() {
     const tags = Object.values(this.props.note.tags)
+    if (this.props.isFetched === true) {
+      return(
+        <div>
+          {tags.map((tag, i) => <span key={i}>{tag.name}  </span>)}
+        </div>
+      )
+    } else {
+      return(
+        <div>Loading...</div>
+      )
+    }
 
-    return(
-      <div>
-        {tags.map((tag, i) => <span key={i}>{tag.name}  </span>)}
-      </div>
-    )
-  }
+    }
 }
 
-export default TagDetail;
+export default withRouter(TagDetail);
