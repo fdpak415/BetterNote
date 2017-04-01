@@ -72,7 +72,6 @@ table {
   background: #CCC;
   position: fixed;
   height: 100%;
-  overflow-y: auto;
   z-index: 1000;
 }
 
@@ -96,6 +95,7 @@ table {
 
 .sidebar-div {
   height: 100%;
+  width: 100%;
   position: relative;
 }
 
@@ -110,13 +110,20 @@ table {
 
 .sidebar-button-container > li {
 margin-top: 15px;
+width: 100%
 }
 
 .greeting-container {
   position: absolute;
   bottom: 30px;
   left: 5px;
-  text-align: center;
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  h4{
+    width: 100%;
+    word-wrap: break-word;
+  }
 }
 
 .header-col {
@@ -151,7 +158,8 @@ margin-top: 15px;
 
 .search-form {
   height: calc(100vh);
-  border: 1px solid black;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
   position: relative;
   padding: 0 !important;
 }

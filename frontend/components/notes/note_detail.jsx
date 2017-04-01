@@ -28,10 +28,12 @@ class NoteDetail extends React.Component {
   }
 
   componentWillMount() {
+
     if (!this.props.params.noteId) {
       this.props.fetchNotes().done(notes => this.props.fetchNote(Object.values(notes.notes)[0].id))
       this.setState({isFetched: true})
     }
+    this.props.fetchNote(this.props.params.noteId)
     this.props.fetchNotebooks();
   }
 
@@ -127,9 +129,6 @@ class NoteDetail extends React.Component {
       }
 
     }
-
-
-
   }
 
 
