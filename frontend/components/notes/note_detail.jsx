@@ -1,5 +1,5 @@
 import React from 'react';
-import {withRouter} from 'react-router';
+import {withRouter, browserHistory} from 'react-router';
 import TagForm2 from '../tags/tag_form2';
 import NotebookSelector from './notebook_selector';
 import TagDetail from '../tags/tag_detail';
@@ -19,9 +19,15 @@ class NoteDetail extends React.Component {
       author_id: this.props.userId,
       noteId: this.props.noteDetail.id,
       isFetching: false,
-      isFetched: true
+      isFetched: false
     }
 
+    browserHistory.listen(location => {
+      this.setState({isFetched: false});
+      this.props.fetchNote(this.props.params.noteId)
+      .done(this.setState({isFetched: true}));
+      this.forceUpdate()})
+      debugger;
     this.addNotebook = this.addNotebook.bind(this);
     this.update = this.update.bind(this);
     this.updateNotebookId = this.updateNotebookId.bind(this);
@@ -30,21 +36,11 @@ class NoteDetail extends React.Component {
   componentWillMount() {
     if (!this.props.params.noteId) {
       this.props.fetchNotes().done(notes => this.props.fetchNote(Object.values(notes.notes)[0].id))
+      this.setState({isFetched: true})
     }
-    this.props.fetchNote(parseInt(this.props.params.noteId))
-    .done(note => this.forceUpdate());
     this.props.fetchNotebooks();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.params.noteId !== nextProps.params.noteId) {
-      this.props.fetchNote(parseInt(nextProps.params.noteId));
-    }
-    this.setState({title: nextProps.noteDetail.title,
-                   body: nextProps.noteDetail.body,
-                   notebook_id: nextProps.noteDetail.notebook_id,
-                   noteId: nextProps.noteDetail.id});
-  }
 
   routeIsCorrect() {
     return parseInt(this.props.params.noteId) === this.props.noteDetail.id;
@@ -75,13 +71,13 @@ class NoteDetail extends React.Component {
 
 
   render() {
-    window.location.reload();
+
     const notebooks = values(this.props.notebooks)
     const noteDetail = this.props.noteDetail;
     const notebookId = this.props.noteDetail.notebook_ids
     const notebook = notebooks.filter(book => book.id === notebookId)[0]
 
-    if (this.props.noteDetail.id === parseInt(this.props.params.noteId)) {
+    if (this.state.isFetched === true) {
       return(
           <div className="note-detail-div">
 
@@ -91,7 +87,7 @@ class NoteDetail extends React.Component {
               <br></br>
 
               Tags:
-              <TagDetail note={noteDetail}/>
+              <TagDetail isFetched={this.state.isFetched} note={noteDetail}/>
               <TagForm2 noteDetail={this.props.noteDetail} createTag={this.props.createTag} />
 
               <br></br>
