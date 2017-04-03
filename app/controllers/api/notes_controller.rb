@@ -21,6 +21,7 @@ class Api::NotesController < ApplicationController
       render :show
   end
 
+
   def create
     new_params = note_params.reject {|h| h["tags"]}
     @note = Note.new(new_params)

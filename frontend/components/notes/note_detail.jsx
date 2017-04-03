@@ -18,28 +18,36 @@ class NoteDetail extends React.Component {
       notebook_id: this.props.noteDetail.notebook_id,
       author_id: this.props.userId,
       noteId: this.props.noteDetail.id,
-      isFetching: false,
       isFetched: false
     }
 
-    browserHistory.listen(location => {
-      this.setState({isFetched: false});
-      this.props.fetchNote(this.props.params.noteId)
-      .done(this.setState({isFetched: true}));
-      this.forceUpdate()})
-      debugger;
+
     this.addNotebook = this.addNotebook.bind(this);
     this.update = this.update.bind(this);
     this.updateNotebookId = this.updateNotebookId.bind(this);
   }
 
   componentWillMount() {
+
     if (!this.props.params.noteId) {
       this.props.fetchNotes().done(notes => this.props.fetchNote(Object.values(notes.notes)[0].id))
       this.setState({isFetched: true})
     }
+    this.props.fetchNote(this.props.params.noteId)
     this.props.fetchNotebooks();
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.params.noteId !== nextProps.params.noteId) {
+      this.props.fetchNote(parseInt(nextProps.params.noteId));
+    }
+    this.setState({title: nextProps.noteDetail.title,
+                   body: nextProps.noteDetail.body,
+                   notebook_id: nextProps.noteDetail.notebook_id,
+                   noteId: nextProps.noteDetail.id,
+                   isFetched: true});
+  }
+
 
 
   routeIsCorrect() {
@@ -121,9 +129,6 @@ class NoteDetail extends React.Component {
       }
 
     }
-
-
-
   }
 
 

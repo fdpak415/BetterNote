@@ -1,5 +1,6 @@
 import React from 'react';
 import {withRouter} from 'react-router';
+import {Image, Glyphicon} from 'react-bootstrap';
 
 class Greeting extends React.Component {
   constructor(props){
@@ -28,9 +29,7 @@ class Greeting extends React.Component {
     if (this.props.currentUser) {
       return (
         <div className="greeting-container">
-          <h3>Welcome, {this.props.currentUser.email}</h3>
-          <button
-            onClick={this.handleClick}>Logout</button>
+          <Glyphicon class="user-icon" glyph="user"></Glyphicon>
         </div>
       )
     } else {

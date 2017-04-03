@@ -61,18 +61,17 @@ table {
 }
 
 #wrapper {
-  padding-left: 120px;
+  padding-left: 100px;
   height: 100%;
 }
 
 #sidebar-wrapper {
-  margin-left: -120px;
-  left: 120px;
-  width: 120px;
+  margin-left: -100px;
+  left: 100px;
+  width: 100px;
   background: #CCC;
   position: fixed;
   height: 100%;
-  overflow-y: auto;
   z-index: 1000;
 }
 
@@ -96,6 +95,7 @@ table {
 
 .sidebar-div {
   height: 100%;
+  width: 100%;
   position: relative;
 }
 
@@ -110,13 +110,35 @@ table {
 
 .sidebar-button-container > li {
 margin-top: 15px;
+width: 100%
+}
+
+.btn-success {
+  font-size: 12px !important;
+  padding: 4px !important;
+  width: 75px;
+  height: 70px;
+}
+
+.btn .glyphicon {
+  font-size: 25px;
+}
+
+.glyphicon-user {
+  height: 40px;
+  width: 40px;
+  font-size: 60px;
+
 }
 
 .greeting-container {
   position: absolute;
   bottom: 30px;
   left: 5px;
-  text-align: center;
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 1px solid black;
 }
 
 .header-col {
@@ -151,7 +173,8 @@ margin-top: 15px;
 
 .search-form {
   height: calc(100vh);
-  border: 1px solid black;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
   position: relative;
   padding: 0 !important;
 }

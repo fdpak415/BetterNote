@@ -9,7 +9,7 @@ const NoteDetailReducer = (state = {tags: {}}, action) => {
   switch (action.type) {
     case RECEIVE_NOTE:
       const newNote = action.note;
-      return merge({}, state, newNote);
+      return merge({}, newNote);
     case RECEIVE_TAG:
       const newTag = {[action.tag.id]: action.tag};
       return merge({}, state, newTag);
