@@ -23,19 +23,19 @@ class Sidebar extends React.Component {
 
         <ul className="sidebar-button-container">
           <li>
-            <Button bsStyle="success" onClick={e => this.handleClick(e, '/note/new')}><Glyphicon glyph="plus" />
+            <Button bsStyle="success" onClick={e => this.handleClick(e, '/note/new')}><Glyphicon glyph="plus" /><br></br>
               New Note
             </Button>
           </li>
 
           <li>
-            <Button bsStyle="success" onClick={e => this.handleClick(e, '/notebooks')}><Glyphicon glyph="book" />
+            <Button bsStyle="success" onClick={e => this.handleClick(e, '/notebooks')}><Glyphicon glyph="book" /><br></br>
               Notebooks
             </Button>
           </li>
 
           <li>
-            <Button bsStyle="success" onClick={e => this.handleClick(e, '/search/tags')}><Glyphicon glyph="search" />
+            <Button bsStyle="success" onClick={e => this.handleClick(e, '/search/tags')}><Glyphicon glyph="search" /><br></br>
               Search Tags
             </Button>
           </li>

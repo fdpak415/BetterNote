@@ -61,14 +61,14 @@ table {
 }
 
 #wrapper {
-  padding-left: 120px;
+  padding-left: 100px;
   height: 100%;
 }
 
 #sidebar-wrapper {
-  margin-left: -120px;
-  left: 120px;
-  width: 120px;
+  margin-left: -100px;
+  left: 100px;
+  width: 100px;
   background: #CCC;
   position: fixed;
   height: 100%;
@@ -113,14 +113,23 @@ margin-top: 15px;
 width: 100%
 }
 
+.btn-success {
+  font-size: 12px !important;
+  padding: 4px !important;
+  width: 75px;
+  height: 70px;
+}
+
 .btn .glyphicon {
-  margin-right: 4px;
+  font-size: 25px;
 }
 
-.btn.btn-icon .glyphicon {
-  margin-right: 0;
-}
+.glyphicon-user {
+  height: 40px;
+  width: 40px;
+  font-size: 60px;
 
+}
 
 .greeting-container {
   position: absolute;
@@ -129,10 +138,7 @@ width: 100%
   width: 100%;
   padding-left: 10px;
   padding-right: 10px;
-  h4{
-    width: 100%;
-    word-wrap: break-word;
-  }
+  border: 1px solid black;
 }
 
 .header-col {
