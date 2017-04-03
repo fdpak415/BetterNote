@@ -113,6 +113,15 @@ margin-top: 15px;
 width: 100%
 }
 
+.btn .glyphicon {
+  margin-right: 4px;
+}
+
+.btn.btn-icon .glyphicon {
+  margin-right: 0;
+}
+
+
 .greeting-container {
   position: absolute;
   bottom: 30px;
