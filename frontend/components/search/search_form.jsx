@@ -80,7 +80,7 @@ class SearchForm extends React.Component {
 
                 <span>{suggestion.title}</span>
                 <br></br>
-                <span>{suggestion.created_at}</span>
+                <span>{suggestion.date}</span>
                 <br></br>
                 <span>{suggestion.body}</span>
 

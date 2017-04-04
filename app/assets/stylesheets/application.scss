@@ -60,6 +60,7 @@ table {
 	border-spacing: 0;
 }
 
+
 #wrapper {
   padding-left: 100px;
   height: 100%;
@@ -132,6 +133,8 @@ width: 100%
   display: block;
   padding-top: 15px;
   cursor: pointer;
+  color: #5cb85c;
+
 }
 
 
@@ -142,10 +145,18 @@ width: 100%
   padding-left: 10px;
   padding-right: 10px;
   border-top: 1px solid gray;
+  background-color: yellow;
 }
 
 .greeting-container:hover {
   background-color: darkgray;
+}
+
+.modal-title {
+  text-align: center;
+}
+.modal-body {
+  text-align: center;
 }
 
 .header-col {
@@ -164,7 +175,7 @@ width: 100%
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 17px;
+  margin-top: 30px;
 }
 
 .container-fluid {

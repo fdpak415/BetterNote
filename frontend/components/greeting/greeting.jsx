@@ -1,6 +1,6 @@
 import React from 'react';
 import {withRouter} from 'react-router';
-import {Image, Glyphicon, Modal} from 'react-bootstrap';
+import {Image, Glyphicon, Modal, Button} from 'react-bootstrap';
 import UserModal from './user_modal';
 
 class Greeting extends React.Component {
@@ -40,19 +40,22 @@ class Greeting extends React.Component {
   }
 
   render() {
-
-    if (this.props.currentUser) {
+    const user = this.props.currentUser
+    if (user) {
       return (
         <div onClick={this.open} className="greeting-container">
-          <Glyphicon glyph="user"></Glyphicon>
+          <circle><Glyphicon glyph="user"></Glyphicon></circle>
 
-          <Modal show={this.state.showModal} onHide={this.close}>
+          <Modal bsSize={"sm"} show={this.state.showModal} onHide={this.close}>
             <Modal.Header>
-              <Modal.Title>Welcome </Modal.Title>
+              <Glyphicon glyph="user"></Glyphicon>
+              <Modal.Title>{user.email}</Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
-              One fine body...
+              <Button bsStyle="danger" onClick={this.props.userLogout}>
+                Logout
+              </Button>
             </Modal.Body>
           </Modal>
         </div>
