@@ -108,7 +108,7 @@ class NoteDetail extends React.Component {
 
               <textarea
                 className="text-area"
-                value={this.state.body}
+                value={this.state.body || ''}
                 onChange={e => this.update(e, 'body')}></textarea>
 
               <br></br>

@@ -126,19 +126,26 @@ width: 100%
 
 .glyphicon-user {
   height: 40px;
-  width: 40px;
+  width: 100%;
   font-size: 60px;
-
+  text-align: center;
+  display: block;
+  padding-top: 15px;
+  cursor: pointer;
 }
+
 
 .greeting-container {
   position: absolute;
   bottom: 30px;
-  left: 5px;
   width: 100%;
   padding-left: 10px;
   padding-right: 10px;
-  border: 1px solid black;
+  border-top: 1px solid gray;
+}
+
+.greeting-container:hover {
+  background-color: darkgray;
 }
 
 .header-col {
