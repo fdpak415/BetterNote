@@ -25,6 +25,7 @@ class NoteDetail extends React.Component {
     this.addNotebook = this.addNotebook.bind(this);
     this.update = this.update.bind(this);
     this.updateNotebookId = this.updateNotebookId.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentWillMount() {
@@ -32,8 +33,9 @@ class NoteDetail extends React.Component {
     if (!this.props.params.noteId) {
       this.props.fetchNotes().done(notes => this.props.fetchNote(Object.values(notes.notes)[0].id))
       this.setState({isFetched: true})
+    } else {
+      this.props.fetchNote(this.props.params.noteId)
     }
-    this.props.fetchNote(this.props.params.noteId)
     this.props.fetchNotebooks();
   }
 
@@ -57,7 +59,7 @@ class NoteDetail extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const note = this.state;
-    const id = parseInt(this.props.params.noteId)
+    const id = parseInt(this.state.noteId)
     this.props.updateNote(id, {note})
     this.props.router.push("/")
     window.location.reload();
@@ -91,10 +93,10 @@ class NoteDetail extends React.Component {
 
             <form className="note-detail-form" onSubmit={(e) => this.handleSubmit(e)}>
 
-              <NotebookSelector notebookId={notebookId} addNotebook={this.addNotebook} noteDetail={noteDetail} update={this.updateNotebookId} notebooks={notebooks} />
-              <br></br>
+              <div className="notebook-selector-title">
+                Select a Notebook:
+              </div> <NotebookSelector notebookId={notebookId} addNotebook={this.addNotebook} noteDetail={noteDetail} update={this.updateNotebookId} notebooks={notebooks} />
 
-              Tags:
               <TagDetail isFetched={this.state.isFetched} note={noteDetail}/>
               <TagForm2 noteDetail={this.props.noteDetail} createTag={this.props.createTag} />
 
@@ -108,7 +110,7 @@ class NoteDetail extends React.Component {
 
               <textarea
                 className="text-area"
-                value={this.state.body}
+                value={this.state.body || ''}
                 onChange={e => this.update(e, 'body')}></textarea>
 
               <br></br>

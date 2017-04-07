@@ -18,11 +18,11 @@ const App = ({children}) => (
         <Grid fluid={true} >
 
         <Row>
-          <Col xs={4} className="search-form">
+          <Col xs={3} className="search-form">
             <SearchFormContainer />
           </Col>
 
-          <Col xs={8} className="note-detail">
+          <Col xs={9} className="note-detail">
             <NotesDetailContainer />
           </Col>
 
