@@ -12,7 +12,7 @@ class TagDetail extends React.Component {
     const tags = Object.values(this.props.note.tags)
 
       return(
-        <div>
+        <div>Tags:&nbsp;
           {tags.map((tag, i) => <span key={i}>{tag.name}  </span>)}
         </div>
       )

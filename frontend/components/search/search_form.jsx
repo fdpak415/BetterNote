@@ -1,14 +1,15 @@
 import React from 'react';
 import values from 'lodash/values';
 import {Link, withRouter} from 'react-router';
-import {FormControl} from 'react-bootstrap';
+import {FormControl, Glyphicon} from 'react-bootstrap';
 
 class SearchForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       value: '',
-      suggestions: Object.values(this.props.notes)
+      suggestions: Object.values(this.props.notes),
+      hover: false
     }
     this.handleClick = this.handleClick.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -16,6 +17,8 @@ class SearchForm extends React.Component {
     this.renderSuggestions = this.renderSuggestions.bind(this);
     this.cancelButton = this.cancelButton.bind(this);
     this.renderNotes = this.renderNotes.bind(this);
+    this.onMouseEnterHandler = this.onMouseEnterHandler.bind(this);
+    this.onMouseLeaveHandler = this.onMouseLeaveHandler.bind(this);
   }
 
   componentWillMount() {
@@ -26,6 +29,14 @@ class SearchForm extends React.Component {
     if (nextProps.notes !== this.props.notes) {
       this.forceUpdate();
     }
+  }
+
+  onMouseEnterHandler() {
+    this.setState({hover: true});
+  }
+
+  onMouseLeaveHandler() {
+    this.setState({hover: false});
   }
 
   onChange(e) {
@@ -75,17 +86,16 @@ class SearchForm extends React.Component {
     return (
           <ul className="notes-suggestions">
             {suggestions.map((suggestion, i) =>
-            <Link to={`/notes/${suggestion.id}`} key={i}>
-            <li key={i}>
+            <Link to={`/notes/${suggestion.id}`} style={{ textDecoration: 'none' }} key={i}>
+            <li onMouseOver={this.onMouseEnterHandler} onMouseLeave={this.onMouseLeaveHandler} key={i}>
 
-                <span>{suggestion.title}</span>
-                <br></br>
-                <span>{suggestion.date}</span>
-                <br></br>
-                <span>{suggestion.body}</span>
+                <span className="span1">{suggestion.title}</span>
 
-              <button
-              onClick={e => this.handleClick(e, suggestion)}>Delete Note</button>
+                <span className="span2">{suggestion.date}</span>
+
+                <br></br> <span className="span3">{suggestion.body}</span>
+
+              <button className="trashcan" onClick={e => this.handleClick(e, suggestion)}><Glyphicon glyph="trash"></Glyphicon></button>
             </li>
             </Link>)}
           </ul>

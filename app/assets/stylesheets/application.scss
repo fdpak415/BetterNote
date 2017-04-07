@@ -132,10 +132,15 @@ width: 100%
   text-align: center;
   display: block;
   padding-top: 15px;
-  cursor: pointer;
   color: #5cb85c;
-
 }
+
+.sidebar-div {
+  .glyphicon-user {
+    cursor: pointer;
+  }
+}
+
 
 
 .greeting-container {
@@ -176,6 +181,7 @@ width: 100%
   margin-left: auto;
   margin-right: auto;
   margin-top: 30px;
+
 }
 
 .container-fluid {
@@ -200,6 +206,7 @@ width: 100%
 .notes-header {
   text-align: center;
   margin-bottom: 20px;
+  color: #5cb85c;
 }
 
 .notes-suggestions {
@@ -207,6 +214,49 @@ width: 100%
     border-top: 1px solid black;
     padding: 20px;
     width: 100%;
+    position: relative;
+  }
+  button {
+    visibility: hidden;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+  }
+
+  li:hover {
+    background-color: #5cb85c;
+
+    span {
+      color: white;
+    }
+
+    button {
+      background-color: #5cb85c;
+      visibility: visible;
+    }
+  }
+
+  span {
+    transition: color .3s;
+  }
+
+  a {
+    color: black !important;
+  }
+
+  .span1 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .span2 {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+
+  .span3 {
+    color: dimgray;
   }
 }
 
@@ -227,9 +277,15 @@ input {
   height: 100%;
 }
 
+.notebook-selector-title {
+  margin: 5px;
+  color: #5cb85c;
+}
+
 .note-detail-form {
   height: 100%;
 }
+
 .text-area {
   box-sizing: border-box; /* fit parent width */
   width: 100%;

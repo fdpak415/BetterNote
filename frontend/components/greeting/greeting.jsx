@@ -44,7 +44,7 @@ class Greeting extends React.Component {
     if (user) {
       return (
         <div onClick={this.open} className="greeting-container">
-          <circle><Glyphicon glyph="user"></Glyphicon></circle>
+          <Glyphicon glyph="user"></Glyphicon>
 
           <Modal bsSize={"sm"} show={this.state.showModal} onHide={this.close}>
             <Modal.Header>

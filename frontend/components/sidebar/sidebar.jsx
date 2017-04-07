@@ -14,12 +14,13 @@ class Sidebar extends React.Component {
   handleClick(e, path) {
     e.preventDefault();
     this.props.router.push(path);
+    window.location.reload();
   }
 
   render() {
     return(
       <div className="sidebar-div">
-        <Image src="https://cdn2.iconfinder.com/data/icons/bitsies/128/Pen-128.png" rounded className="logo"/>
+        <input type="image" onClick={e => this.handleClick(e, '/')} src="https://cdn2.iconfinder.com/data/icons/bitsies/128/Pen-128.png" className="logo" />
 
         <ul className="sidebar-button-container">
           <li>
