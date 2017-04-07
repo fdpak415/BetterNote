@@ -277,11 +277,25 @@ input {
   height: 100%;
 }
 
+.note-detail-header{
+  display: flex;
+}
+
 .notebook-selector-title {
-  margin: 5px;
+  margin: 14px 0px 0px 5px;
+  color: #5cb85c;
+  font-size: 1.3em;
+}
+
+.note-detail-title {
+  margin-top: 20px;
   color: #5cb85c;
 }
 
+.note-detail-tags {
+  flex: 1;
+  font-size: 1.3em;
+}
 .note-detail-form {
   height: 100%;
 }

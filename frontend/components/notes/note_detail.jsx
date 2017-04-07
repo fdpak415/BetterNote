@@ -93,19 +93,25 @@ class NoteDetail extends React.Component {
 
             <form className="note-detail-form" onSubmit={(e) => this.handleSubmit(e)}>
 
-              <div className="notebook-selector-title">
-                Select a Notebook:
-              </div> <NotebookSelector notebookId={notebookId} addNotebook={this.addNotebook} noteDetail={noteDetail} update={this.updateNotebookId} notebooks={notebooks} />
 
-              <TagDetail isFetched={this.state.isFetched} note={noteDetail}/>
-              <TagForm2 noteDetail={this.props.noteDetail} createTag={this.props.createTag} />
+                <div className="notebook-selector-title">
+                  Select a Notebook:
+                </div> <NotebookSelector notebookId={notebookId}
+                addNotebook={this.addNotebook} noteDetail={noteDetail}
+                update={this.updateNotebookId} notebooks={notebooks} />
 
-              <br></br>
+              <div className="note-detail-header">
+                <input
+                  className="note-detail-title"
+                  type="text"
+                  value={this.state.title}
+                  onChange={e => this.update(e, 'title')}></input>
+                <div className="note-detail-tags">
+                  <TagDetail isFetched={this.state.isFetched} note={noteDetail}/>
+                  <TagForm2 noteDetail={this.props.noteDetail} createTag={this.props.createTag} />
+                </div>
+              </div>
 
-              <input
-                type="text"
-                value={this.state.title}
-                onChange={e => this.update(e, 'title')}></input>
               <br></br>
 
               <textarea
