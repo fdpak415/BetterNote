@@ -6,7 +6,7 @@ import TagDetail from '../tags/tag_detail';
 import { values } from 'lodash';
 import ReactQuill from 'react-quill';
 import Editor from '../../util/editor';
-import {Col, Row} from 'react-bootstrap';
+import {Col, Row, Glyphicon} from 'react-bootstrap';
 
 class NoteDetail extends React.Component {
   constructor(props){
@@ -93,7 +93,6 @@ class NoteDetail extends React.Component {
 
             <form className="note-detail-form" onSubmit={(e) => this.handleSubmit(e)}>
 
-
                 <div className="notebook-selector-title">
                   Select a Notebook:
                 </div> <NotebookSelector notebookId={notebookId}
@@ -106,12 +105,14 @@ class NoteDetail extends React.Component {
                   type="text"
                   value={this.state.title}
                   onChange={e => this.update(e, 'title')}></input>
+
                 <div className="note-detail-tags">
                   <TagDetail isFetched={this.state.isFetched} note={noteDetail}/>
-                  <TagForm2 noteDetail={this.props.noteDetail} createTag={this.props.createTag} />
+                  <div className="tag-form2">
+                    <TagForm2 noteDetail={this.props.noteDetail} createTag={this.props.createTag} />
+                  </div>
                 </div>
               </div>
-
               <br></br>
 
               <textarea
