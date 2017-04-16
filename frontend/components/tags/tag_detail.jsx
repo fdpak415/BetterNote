@@ -5,8 +5,6 @@ import {Glyphicon, Label} from 'react-bootstrap';
 class TagDetail extends React.Component {
   constructor(props){
     super(props);
-
-
   }
 
   render() {
