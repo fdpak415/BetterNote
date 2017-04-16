@@ -1,4 +1,6 @@
 import React from 'react';
+import {Button, Glyphicon} from 'react-bootstrap';
+
 
 class TagInput2 extends React.Component {
   render() {
@@ -51,8 +53,8 @@ class TagForm2 extends React.Component {
     });
 
     return(
-      <div>
-        <button type="button" onClick={ this.add }>+</button>
+      <div >
+        <Button type="button" className="tag-button" onClick={ this.add }><Glyphicon glyph="plus" /></Button>
         {documents}
       </div>
     )

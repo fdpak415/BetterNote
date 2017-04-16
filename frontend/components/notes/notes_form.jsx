@@ -2,6 +2,8 @@ import React from 'react';
 import {withRouter} from 'react-router';
 import TagForm from '../tags/tag_form';
 import NotebookSelector from './notebook_selector';
+import {Glyphicon} from 'react-bootstrap';
+
 
 class NoteForm extends React.Component {
   constructor(props){
@@ -68,14 +70,16 @@ class NoteForm extends React.Component {
     return(
       <div>
         <form onSubmit={(e) => this.handleSubmit(e)}>
-
+          <div className="notebook-selector-title">
+            Select a Notebook:
+          </div>
           <select  onChange={ e => this.addNotebook(e.currentTarget.value)}>
             { notebooks.map((book, i) => <option key={i} value={book.id}>{book.title}</option>)}
           </select>
 
           <br></br>
 
-          Tags: <TagForm addTag={this.addTag} />
+          <Glyphicon glyph="tags" />&nbsp;<TagForm addTag={this.addTag} />
 
           <br></br>
 

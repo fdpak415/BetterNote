@@ -1,12 +1,12 @@
 import React from 'react';
 import {Provider} from 'react-redux';
 import {Router, Route, IndexRoute, hashHistory} from 'react-router';
-import App from './app';
-import App2 from './app2';
-import App3 from './app3';
+import App from './home_page';
+import App2 from './tag_search';
+import App3 from './notebooks';
 import AuthFormContainer from './authform/auth_form_container';
 import NotebookFormContainer from './notebook/notebook_form_container';
-import NoteFormContainer from './notes/notes_form_container';
+import NewNote from './new_note';
 import NotesContainer from './notes/notes_container';
 import NotesDetailContainer from './notes/notes_detail_container';
 import SearchFormContainer from './search/search_form_container';
@@ -45,7 +45,7 @@ const Root = ({store}) => (
       <Route path="/signup" component={AuthFormContainer} onEnter={_redirectIfLoggedIn}/>
       <Route path="/login" component={AuthFormContainer} onEnter={_redirectIfLoggedIn}/>
       <Route path="/notebooks" component={NotebooksContainer} onEnter={_ensureLoggedIn} />
-      <Route path="/note/new" component={NoteFormContainer} onEnter={_ensureLoggedIn} />
+      <Route path="/note/new" component={NewNote} onEnter={_ensureLoggedIn} />
       <Route path="/notebook/new" component={NotebookFormContainer} onEnter={_ensureLoggedIn} />
       <Route path="/search/tags" component={TagSearchContainer} onEnter={_ensureLoggedIn} />
     </Router>

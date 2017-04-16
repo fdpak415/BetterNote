@@ -1,4 +1,5 @@
 import React from 'react';
+import {Glyphicon} from 'react-bootstrap';
 
 class NotebookSelector extends React.Component {
   constructor(props) {
@@ -31,7 +32,7 @@ class NotebookSelector extends React.Component {
       <div>
         {this.state.value ?
         <select value={this.state.value} onChange={this.update}>
-          { notebooks.map((book, i) => <option  key={i} value={book.id}>{book.title}</option>)}
+          { notebooks.map((book, i) => <option  key={i} value={book.id}><Glyphicon glyph="book" /> {book.title}</option>)}
         </select>
         :
         <div>loading</div>}
