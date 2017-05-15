@@ -13,13 +13,7 @@ const NewNote = () => (
     <div id="page-content-wrapper">
       <div className="page-content">
         <Grid fluid={true} >
-
-        <Row>
-          <Col xs={12} className="notes-form">
             <NotesFormContainer />
-          </Col>
-
-        </Row>
         </Grid>
       </div>
     </div>

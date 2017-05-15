@@ -39,11 +39,17 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 html {
-	min-height: 100%;
+	height: 100%;
   overflow: auto;
   margin:0;
   padding:0;
 }
+body{
+  min-height: 100%;
+  overflow: auto;
+}
+
+b
 ol, ul {
 	list-style: none;
 }
@@ -58,6 +64,10 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+
+#root{
+   height:100vh;
 }
 
 
@@ -349,4 +359,76 @@ width: 100%
   position: absolute;
   bottom: 30px;
   right: 20px;
+}
+
+/* NEW NOTE */
+
+.new-note {
+  display: flex;
+  height: 100%;
+}
+
+.new-note-tags {
+  flex: 1;
+  font-size: 1.3em;
+  color: #5cb85c;
+}
+
+.new-note-notebook-selector-title {
+  margin: 14px 0px 0px 5px;
+  color: #5cb85c;
+  font-size: 1.3em;
+}
+
+.new-form {
+  width: 100%;
+  margin-top: 30px;
+  height: 100%;
+}
+
+.new-note-tags {
+  margin-top: 30px;
+  margin-left: 20px;
+}
+
+#notes-form-glyph {
+  float: left;
+  margin-right: 15px;
+  margin-top: 3px;
+}
+
+.new-note-horizontal{
+  border-bottom: 1px solid gray;
+  border: 1 !important;
+}
+
+#hr {
+  border-bottom: 1px solid gray;
+  width: 90.5%;
+  height: 1px;
+  float: right;
+  margin-bottom: 0px !important;
+}
+
+.new-note-row1{
+  height: 60px;
+}
+
+.new-note-title {
+  border-style: none;
+  font-size: 2.5em;
+  width: 90%;
+}
+
+.new-note-text{
+  width: 90%;
+  height: 90%;
+}
+
+.note-title-row {
+  height: 100%;
+}
+
+.note-title-col{
+  height: 100%;
 }
