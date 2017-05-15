@@ -2,7 +2,7 @@ import React from 'react';
 import {withRouter} from 'react-router';
 import TagForm from '../tags/tag_form';
 import NotebookSelector from './notebook_selector';
-import {Glyphicon} from 'react-bootstrap';
+import {Grid, Row, Col, Glyphicon} from 'react-bootstrap';
 
 
 class NoteForm extends React.Component {
@@ -68,22 +68,34 @@ class NoteForm extends React.Component {
   render() {
     const notebooks = Object.values(this.props.notebooks)
     return(
-      <div>
-        <form onSubmit={(e) => this.handleSubmit(e)}>
-          <div className="notebook-selector-title">
-            Select a Notebook:
-          </div>
-          <select  onChange={ e => this.addNotebook(e.currentTarget.value)}>
-            { notebooks.map((book, i) => <option key={i} value={book.id}>{book.title}</option>)}
-          </select>
+      <div className ="new-note">
+        <form className="new-form" onSubmit={(e) => this.handleSubmit(e)}>
+          <Row className="new-note-row1">
+            <div className="new-note-header">
+              <Col xsOffset={1} xs={2}>
+                <div className="new-note-notebook-selector-title">
+                  Select a Notebook:
+                </div>
+                <select  onChange={ e => this.addNotebook(e.currentTarget.value)}>
+                  { notebooks.map((book, i) => <option key={i} value={book.id}>{book.title}</option>)}
+                </select>
+              </Col>
 
-          <br></br>
+              <Col xs={9}>
+                <div className="new-note-tags">
+                  <Glyphicon id="notes-form-glyph" glyph="tags" /><TagForm id="notes-form-tag-form" addTag={this.addTag} />
+                </div>
+              </Col>
+            </div>
+            <hr id="hr"></hr>
+          </Row>
 
-          <Glyphicon glyph="tags" />&nbsp;<TagForm addTag={this.addTag} />
+        <br></br>
 
-          <br></br>
-
+      <Row className="note-title-row">
+        <Col xsOffset={1} xs={12} className="note-title-col">
           <input
+            className="new-note-title"
             type="text"
             placeholder="New Note..."
             value={this.state.title}
@@ -92,9 +104,12 @@ class NoteForm extends React.Component {
           <br></br>
 
           <textarea
+            className="new-note-text"
             placeholder="Type Here..."
             value={this.state.body}
             onChange={this.update('body')}></textarea>
+        </Col>
+      </Row>
 
           <input
             type="submit"
@@ -104,7 +119,6 @@ class NoteForm extends React.Component {
             type="button"
             value="Cancel"
             onClick={this.cancelButton}></input>
-
         </form>
       </div>
     )
