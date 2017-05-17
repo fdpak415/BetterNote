@@ -87,13 +87,16 @@ class NoteForm extends React.Component {
                 </div>
               </Col>
             </div>
-            <hr id="hr"></hr>
+          </Row>
+
+          <Row className="horizontal-row">
+            <div id="hr"></div>
           </Row>
 
         <br></br>
 
       <Row className="note-title-row">
-        <Col xsOffset={1} xs={12} className="note-title-col">
+        <Col xsOffset={1} xs={10} className="note-title-col">
           <input
             className="new-note-title"
             type="text"
@@ -111,14 +114,19 @@ class NoteForm extends React.Component {
         </Col>
       </Row>
 
+        <div className="new-note-buttons">
           <input
             type="submit"
+            className="btn btn-success btn-md"
             value="Create Note"></input>
 
           <input
             type="button"
+            className="btn btn-danger btn-md"
             value="Cancel"
             onClick={this.cancelButton}></input>
+        </div>
+
         </form>
       </div>
     )

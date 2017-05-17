@@ -67,7 +67,7 @@ table {
 }
 
 #root{
-   height:100vh;
+   height:80vh;
 }
 
 
@@ -124,7 +124,7 @@ margin-top: 15px;
 width: 100%
 }
 
-.btn-success {
+.sidebar-button-container button {
   font-size: 12px !important;
   padding: 4px !important;
   width: 75px;
@@ -279,7 +279,7 @@ width: 100%
 }
 
 .note-detail{
-  height: calc(100vh );
+  height: calc(90vh );
   position: relative;
 }
 
@@ -394,7 +394,7 @@ width: 100%
 #notes-form-glyph {
   float: left;
   margin-right: 15px;
-  margin-top: 3px;
+  margin-top: 5px;
 }
 
 .new-note-horizontal{
@@ -402,27 +402,45 @@ width: 100%
   border: 1 !important;
 }
 
-#hr {
-  border-bottom: 1px solid gray;
-  width: 90.5%;
-  height: 1px;
-  float: right;
-  margin-bottom: 0px !important;
-}
-
 .new-note-row1{
   height: 60px;
+}
+
+.horizontal-row {
+  height: 1%;
+  border-bottom: 1px solid gray;
+  width: 82.733333%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 20px;
+  margin-bottom: -20px;
 }
 
 .new-note-title {
   border-style: none;
   font-size: 2.5em;
-  width: 90%;
+  width: 100%;
+  color: #5cb85c !important;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #5cb85c;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #5cb85c;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #5cb85c;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #5cb85c;
 }
 
 .new-note-text{
-  width: 90%;
+  width: 100%;
   height: 90%;
+  border: none;
+  resize: none;
 }
 
 .note-title-row {
@@ -431,4 +449,10 @@ width: 100%
 
 .note-title-col{
   height: 100%;
+}
+
+.new-note-buttons {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
 }
